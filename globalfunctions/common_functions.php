@@ -29,6 +29,7 @@
               <div class='card-body'>
                   <h5 class='card-title'>$product_title</h5>
                   <p class='card-text'>$product_description.</p>
+                  <p class='card-text'>Price: $product_price</p>
                   <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -70,6 +71,7 @@
               <div class='card-body'>
                   <h5 class='card-title'>$product_title</h5>
                   <p class='card-text'>$product_description.</p>
+                  <p class='card-text'>Price: $product_price</p>
                   <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -112,6 +114,7 @@
               <div class='card-body'>
                   <h5 class='card-title'>$product_title</h5>
                   <p class='card-text'>$product_description.</p>
+                  <p class='card-text'>Price: $product_price</p>
                   <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -184,6 +187,7 @@ function search_product(){
               <div class='card-body'>
                   <h5 class='card-title'>$product_title</h5>
                   <p class='card-text'>$product_description.</p>
+                  <p class='card-text'>Price: $product_price</p>
                   <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -201,7 +205,7 @@ function search_product(){
 
         //condition to check if the isset or not
 
-        if(isset($_GET['product_id'])){
+    if(isset($_GET['product_id'])){
 
         if(!isset($_GET['category'])){
             if(!isset($_GET['brand'])){
@@ -210,94 +214,55 @@ function search_product(){
         $select_query="SELECT * FROM `products` WHERE product_id=$product_id";
         $result_query=mysqli_query($connection, $select_query);
         while($row=mysqli_fetch_assoc($result_query)){
-          $product_id=$row['product_id'];
-          $product_title=$row['product_title'];
-          $product_description=$row['product_description'];
-          $category_id=$row['category_id'];
-          $brand_id=$row['brand_id'];
-          $product_image1=$row['product_image1'];
-          $product_image2=$row['product_image2'];
-          $product_image3=$row['product_image3'];
-          $product_price=$row['product_price'];
-          echo " 
-          
-          <!--
-           <div class='col-md-4 mb-3'>
-          <div class='card'>
-              <img src='./admin_area/product_images/$product_image1' class='card-img-top' alt='$product_title'>
-              <div class='card-body'>
-                  <h5 class='card-title'>$product_title</h5>
-                  <p class='card-text'>$product_description.</p>
-                  <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
-                  <a href='index.php' class='btn btn-secondary'>Go Home</a>
-              </div>
-          </div>
-      </div>
-      
-      <div class='col-md-8'>
-                 related card 
-                <div class='row'>
-                    <div class='col-md-12'>
-                        <h3 class='text-center text-success mb-5'>Related Products</h3>
-
-                    </div>
-                    <div class='col-md-6 d-flex align-items-center'>
-                        <img src='./admin_area/product_images/$product_image2' alt='$product_title' class='img-fluid'>
-
-                    </div>
-                    <div class='col-md-6 d-flex align-items-center'>
-                        <img src='./admin_area/product_images/$product_image3' class='card-img-top' alt='$product_title' class='img-fluid'>
-                        
-                    </div>
-                </div>
-            </div> 
+            $product_id=$row['product_id'];
+            $product_title=$row['product_title'];
+            $product_description=$row['product_description'];
+            $category_id=$row['category_id'];
+            $brand_id=$row['brand_id'];
+            $product_image1=$row['product_image1'];
+            $product_image2=$row['product_image2'];
+            $product_image3=$row['product_image3'];
+            $product_price=$row['product_price'];
+            echo " 
             
-            
-            -->
-            
-
-
-
-
-            <div class='container'>
-    <div class='row'>
-        <!-- Product Card -->
-        <div class='col-md-4 mb-4'>
-            <div class='card'>
-                <img src='./admin_area/product_images/$product_image1' class='card-img-top' alt='$product_title'>
-                <div class='card-body'>
-                    <h5 class='card-title'>$product_title</h5>
-                    <p class='card-text'>$product_description.</p>
-                    <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
-                    <a href='index.php' class='btn btn-secondary'>Go Home</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Related Products -->
-        <div class='col-md-4 mb-4'>
-            <div class='card'>
-                <div class='card-body'>
-                    <h3 class='text-center text-success mb-5'>Related Products</h3>
+                <div class='container'>
                     <div class='row'>
-                        <div class='col-md-6'>
-                            <img src='./admin_area/product_images/$product_image2' alt='$product_title' class='img-fluid'>
+                        <!-- Product Card -->
+                        <div class='col-md-4 mb-4'>
+                            <div class='card'>
+                                <img src='./admin_area/product_images/$product_image1' class='card-img-top' alt='$product_title'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'>$product_title</h5>
+                                    <p class='card-text'>$product_description.</p>
+                                    <p class='card-text'>Price: $product_price</p>
+                                    <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
+                                    <a href='index.php' class='btn btn-secondary'>Go Home</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class='col-md-6'>
-                            <img src='./admin_area/product_images/$product_image3' alt='$product_title' class='img-fluid'>
+
+                        <!-- Related Products -->
+                        <div class='col-md-4 mb-4'>
+                            <div class='card'>
+                                <div class='card-body'>
+                                    <h3 class='text-center text-success mb-5'>Related Products</h3>
+                                    <div class='row'>
+                                        <div class='col-md-6'>
+                                            <img src='./admin_area/product_images/$product_image2' alt='$product_title' class='img-fluid'>
+                                        </div>
+                                        <div class='col-md-6'>
+                                            <img src='./admin_area/product_images/$product_image3' alt='$product_title' class='img-fluid'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            
-            ";
+                </div>";
+            }
+         }
         }
-    }
-    }
-    }
+      }
     }
     
 
@@ -364,6 +329,26 @@ function search_product(){
             }
             echo $count_cart_items;
 
+        }
+
+        // function to get total cart price
+        function total_cart_price(){
+            global $connection;
+            $get_ip_add = getIPAddress();
+            $total_price=0;
+            $cart_query = "SELECT * FROM `cart_details` WHERE ip_address='$get_ip_add'";
+            $result=mysqli_query($connection, $cart_query);
+            while($row=mysqli_fetch_array($result)){
+                $product_id = $row['product_id'];
+                $select_product = "SELECT * FROM `products` WHERE product_id='$product_id'";
+                $result_product=mysqli_query($connection, $select_product);
+                while($row_product_price=mysqli_fetch_array($result_product)){
+                    $product_price = array($row_product_price['product_price']);
+                    $product_values=array_sum($product_price);   
+                    $total_price+=$product_values;
+                }
+            }
+            echo $total_price;
         }
 
 ?>

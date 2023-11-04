@@ -34,7 +34,7 @@ if(!$db_select){
     <!-- navbar -->
     <div class="container-fluid p-0">
         <!-- first part -->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
     <img src="./images/logo_greentan_white.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,7 @@ if(!$db_select){
           <a class="nav-link" href="#">Total Price: <?php total_cart_price();?>kr.</a>
         </li>
       </ul>
-      <form class="d-flex" action="" method="get">
+      <form class="d-flex" role="search" action="search_product.php">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
         <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
@@ -70,14 +70,12 @@ if(!$db_select){
   </div>
 </nav>
 
-
 <!-- calling cart function -->
 
 <?php
   cart();
 
 ?>
-
 
 <!-- second part -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
@@ -110,9 +108,11 @@ if(!$db_select){
           <!-- fething products -->
       <?php
         // calling function
-        search_product();
+        getproducts();
         get_unique_category();
         get_unique_brand();
+        /* $ip = getIPAddress();  
+    echo 'User Real IP Address - '.$ip; */
         
       ?>
           
@@ -159,9 +159,11 @@ if(!$db_select){
 
 <!-- footer part -->
     
-<?php
-include("./includes/footer.php")
-?>
+<div class="bg-success p-3 text-center text-white">
+    <p>All rights reserved @Rupinder - DWP Assignment</p>
+
+
+</div>
     
     </div>
     

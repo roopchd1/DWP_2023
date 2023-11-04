@@ -55,10 +55,10 @@ if(!$db_select){
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup>2</sup></a>
+          <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Total Price: 2000kr.</a>
+          <a class="nav-link" href="#">Total Price: <?php total_cart_price();?>kr.</a>
         </li>
       </ul>
       <form class="d-flex" role="search" action="search_product.php">
@@ -158,11 +158,9 @@ if(!$db_select){
 
 <!-- footer part -->
     
-<div class="bg-success p-3 text-center text-white">
-    <p>All rights reserved @Rupinder - DWP Assignment</p>
-
-
-</div>
+<?php
+include("./includes/footer.php")
+?>
     
     </div>
     

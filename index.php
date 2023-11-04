@@ -43,10 +43,10 @@ if(!$db_select){
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="display_all.php">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Register</a>
@@ -55,10 +55,10 @@ if(!$db_select){
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
+          <a class="nav-link" href="cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Total Price: 2000kr.</a>
+          <a class="nav-link" href="#">Total Price: <?php total_cart_price();?>kr.</a>
         </li>
       </ul>
       <form class="d-flex" role="search" action="search_product.php">
@@ -159,11 +159,9 @@ if(!$db_select){
 
 <!-- footer part -->
     
-<div class="bg-success p-3 text-center text-white">
-    <p>All rights reserved @Rupinder - DWP Assignment</p>
-
-
-</div>
+<?php
+include("./includes/footer.php")
+?>
     
     </div>
     
