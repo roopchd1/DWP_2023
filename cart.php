@@ -100,17 +100,8 @@ if(!$db_select){
     <div class="row">
         <form action="" method="post">
         <table class="table table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Product Title</th>
-                    <th>Product Image</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Remove</th>
-                    <th colspan="2">Operations</th>
-                </tr>
-            </thead>
-            <tbody>
+            
+            
                 
             <!-- getting dynamic data for all fields -->
 
@@ -120,6 +111,20 @@ if(!$db_select){
                         $total_price=0;
                         $cart_query = "SELECT * FROM `cart_details` WHERE ip_address='$get_ip_add'";
                         $result=mysqli_query($connection, $cart_query);
+                        $result_count=mysqli_num_rows($result); /* if cart is empty */
+                        if($result_count>0){
+                            echo "<thead>
+                                    <tr>
+                                        <th>Product Title</th>
+                                        <th>Product Image</th>
+                                        <th>Quantity</th>
+                                        <th>Total Price</th>
+                                        <th>Remove</th>
+                                        <th colspan='2'>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+
                         while($row=mysqli_fetch_array($result)){
                             $product_id = $row['product_id'];
                             $select_product = "SELECT * FROM `products` WHERE product_id='$product_id'";
@@ -164,17 +169,38 @@ if(!$db_select){
                     </td>
                 </tr>
 
-                <?php  }
+                <?php     }
                         }
+                    }
+                    else {
+                        echo "<h3 class='text-center text-danger'>The cart is empty</h3></br></br>";
+                    }
                         ?>
             </tbody>
         </table>
         
         <!-- sub total -->
         <div class="d-flex mb-5">
-            <h5 class="px-3">Subtotal: <strong class="text-danger"><?php echo $total_price?>kr.</strong> </h5>
-            <a href="index.php"><button class="bg-success text-light px-3 py-2 border-0 mx-3">Continue Shopping</button></a>
-            <a href="#"><button class="bg-secondary text-light px-3 py-2 border-0">Checkout</button></a>
+            <?php
+                $get_ip_add = getIPAddress();
+                $cart_query = "SELECT * FROM `cart_details` WHERE ip_address='$get_ip_add'";
+                $result=mysqli_query($connection, $cart_query);
+                $result_count=mysqli_num_rows($result); /* if cart is empty */
+                if($result_count>0){
+                    echo "<h5 class='px-3'>Subtotal: <strong class='text-danger'>$total_price kr.</strong> </h5>
+                    <input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>
+                    <a href=''><button class='bg-secondary text-light px-3 py-2 border-0'>Checkout</button></a>";
+
+                }else{
+                    echo "<input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>";
+                }
+                if(isset($_POST['continue_shopping'])){
+                    header("Location: index.php");
+                }
+            ?>
+            <!-- <h5 class="px-3">Subtotal: <strong class="text-danger"><?php echo $total_price?>kr.</strong> </h5>
+            
+            <a href="#"><button class="bg-secondary text-light px-3 py-2 border-0">Checkout</button></a> -->
 
         </div>
 
