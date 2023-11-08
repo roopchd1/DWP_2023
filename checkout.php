@@ -1,6 +1,5 @@
 <?php
 require("includes/connect.php");
-include("./globalfunctions/common_functions.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -21,7 +20,7 @@ if(!$db_select){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenTan Artisan</title>
+    <title>GreenTan Artisan - Checkout Page</title>
     <!-- bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- font awesome -->
@@ -34,7 +33,7 @@ if(!$db_select){
     <!-- navbar -->
     <div class="container-fluid p-0">
         <!-- first part -->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
     <img src="./images/logo_greentan_white.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +45,7 @@ if(!$db_select){
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="display_all.php">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Register</a>
@@ -54,13 +53,7 @@ if(!$db_select){
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Total Price: <?php total_cart_price();?>kr.</a>
-        </li>
-      </ul>
+        </ul>
       <form class="d-flex" role="search" action="search_product.php">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
         <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
@@ -69,13 +62,6 @@ if(!$db_select){
     </div>
   </div>
 </nav>
-
-<!-- calling cart function -->
-
-<?php
-  cart();
-
-?>
 
 
 <!-- second part -->
@@ -99,59 +85,26 @@ if(!$db_select){
 
 <!-- fourth part -->
 <div class="row px-1">
-
-
-    <div class="col-md-10">
+    
+    <div class="col-md-12">
         <!-- products -->
         
         <div class="row">
-            
-          <!-- fething products -->
-      <?php
-        // calling function
-        view_details();
-        get_unique_category();
-        get_unique_brand();
-        
-      ?>
-          
-      <!-- end of row -->      
+            <?php
+                if(!isset($_SESSION['username'])){
+                    include('user_area/user_login.php');
+
+                }else{
+                    include('payment.php');
+                }
+
+
+
+
+            ?>
+
         </div>
       <!-- end of column -->
-    </div>
-
-    <!-- sidenav -->
-
-    <div class="col-md-2 bg-dark p-0">
-      <!-- Offers -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
-        </li>
-
-        <?php
-
-        getbrand();
-
-      ?>
-        
-      </ul>
-
-      <!-- categories -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
-        </li>
-
-      <?php
-
-        getcategory();
-
-      ?>
-      </ul>
-        
     </div>
 </div>
 
@@ -163,6 +116,11 @@ include("./includes/footer.php")
 ?>
     
     </div>
+    
+
+
+
+
     
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

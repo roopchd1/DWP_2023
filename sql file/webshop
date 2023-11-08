@@ -1,0 +1,37 @@
+CREATE DATABASE IF NOT EXISTS webshop;
+USE webshop;
+
+-- Table for Brands
+CREATE TABLE IF NOT EXISTS `brand` (
+    brand_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    brand_title VARCHAR(100)
+);
+-- Table for Categories
+CREATE TABLE IF NOT EXISTS `category` (
+    category_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    category_title VARCHAR(100)
+);
+-- Table for Products
+CREATE TABLE IF NOT EXISTS `products` (
+    product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    product_title VARCHAR(100),
+    product_description VARCHAR(255),
+    product_keywords VARCHAR(255),
+    category_id INT NOT NULL,
+    brand_id INT NOT NULL,
+    product_image1 VARCHAR(255),
+    product_image2 VARCHAR(255),
+    product_image3 VARCHAR(255),
+    product_price VARCHAR(255),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(255),
+    FOREIGN KEY (category_id) REFERENCES category(category_id),
+    FOREIGN KEY (brand_id) REFERENCES brand(brand_id)
+);
+-- Table for Cart Details
+CREATE TABLE cart_details (
+    product_id INT,
+    ip_address VARCHAR(255),
+    quantity INT,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);

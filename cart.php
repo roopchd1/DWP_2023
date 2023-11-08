@@ -136,9 +136,6 @@ if(!$db_select){
                                 $product_image1=$row_product_price['product_image1'];
                                 $product_values=array_sum($product_price);   
                                 $total_price+=$product_values;
-                           
-
-
             ?>
 
 
@@ -153,8 +150,6 @@ if(!$db_select){
                             $update_cart="UPDATE `cart_details` SET quantity=$quantities WHERE ip_address='$get_ip_add'";
                             $result_product_qty=mysqli_query($connection, $update_cart);
                             $total_price=$total_price*$quantities;
-
-                            
 
                         }
 
@@ -189,7 +184,7 @@ if(!$db_select){
                 if($result_count>0){
                     echo "<h5 class='px-3'>Subtotal: <strong class='text-danger'>$total_price kr.</strong> </h5>
                     <input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>
-                    <a href=''><button class='bg-secondary text-light px-3 py-2 border-0'>Checkout</button></a>";
+                    <button class='bg-secondary text-light px-3 py-2 border-0'><a href='checkout.php' class='text-light text-decoration-none'>Checkout</a></button>";
 
                 }else{
                     echo "<input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>";
@@ -205,7 +200,6 @@ if(!$db_select){
         </div>
 
     </div>
-
 
 </div>
 </form>
@@ -228,7 +222,6 @@ if(!$db_select){
     }
     echo $remove_item=remove_cart_item();
 
-
 ?>
 
 <!-- footer part -->
@@ -238,12 +231,7 @@ include("./includes/footer.php")
 ?>
     
     </div>
-    
 
-
-
-
-    
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
