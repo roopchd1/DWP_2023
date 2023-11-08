@@ -84,15 +84,15 @@ if(!$db_select){
           <a class="nav-link" href="#">Welcome Guest</a>
         </li>
     <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="./user_area/user_login.php">Login</a>
     </li>
     </ul>
 </nav>
 
 <!-- third part -->
 <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Eco Friendly Lether Bags</p>
+    <h3 class="text-center">GreenTan - Leather Bags</h3>
+    <p class="text-center">Eco Friendly Leather Bags</p>
 </div>
 
 

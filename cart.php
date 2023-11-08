@@ -184,7 +184,7 @@ if(!$db_select){
                 if($result_count>0){
                     echo "<h5 class='px-3'>Subtotal: <strong class='text-danger'>$total_price kr.</strong> </h5>
                     <input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>
-                    <button class='bg-secondary text-light px-3 py-2 border-0'><a href='checkout.php' class='text-light text-decoration-none'>Checkout</a></button>";
+                    <button class='bg-secondary text-light px-3 py-2 border-0'><a href='./user_area/checkout.php' class='text-light text-decoration-none'>Checkout</a></button>";
 
                 }else{
                     echo "<input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>";

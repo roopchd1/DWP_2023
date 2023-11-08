@@ -1,5 +1,5 @@
 <?php
-require("includes/connect.php");
+require("../includes/connect.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -92,7 +92,7 @@ if(!$db_select){
         <div class="row">
             <?php
                 if(!isset($_SESSION['username'])){
-                    include('user_area/user_login.php');
+                    include('user_login.php');
 
                 }else{
                     include('payment.php');
@@ -112,7 +112,7 @@ if(!$db_select){
 <!-- footer part -->
     
 <?php
-include("./includes/footer.php")
+include("../includes/footer.php")
 ?>
     
     </div>

@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS webshop;
 CREATE DATABASE IF NOT EXISTS webshop;
 USE webshop;
 
@@ -34,4 +35,15 @@ CREATE TABLE cart_details (
     ip_address VARCHAR(255),
     quantity INT,
     FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+-- Table for User Registration
+CREATE TABLE user_table (
+    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(100) NOT NULL,
+    user_email VARCHAR(100) NOT NULL,
+    user_password VARCHAR(255) NOT NULL, -- Hash the password before storing it
+    user_image VARCHAR(255) NOT NULL,
+    user_ip VARCHAR(100) NOT NULL,
+    user_address VARCHAR(255) NOT NULL,
+    user_phone VARCHAR(20) NOT NULL
 );
