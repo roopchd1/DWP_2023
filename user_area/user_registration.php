@@ -1,3 +1,9 @@
+<?php
+include('../includes/connect.php');
+include('../globalfunctions/common_functions.php')
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,11 +54,11 @@
                     </div>
                     <!-- user contact field -->
                     <div class="form-outline mb-4">
-                        <label for="user_contact" class="form-label">Address</label>
+                        <label for="user_contact" class="form-label">Contact Number</label>
                         <input type="text" id="user_contact" class="form-control" placeholder="Enter your mobile number" autocomplete="off" required="required" name="user_contact">
                     </div>
                     <div class="mt-4 pt-2">
-                        <input type="button" value="Register" class="bg-success text-light py-2 px-3 border-0" name="user_register">
+                        <input type="submit" value="Register" class="bg-success text-light py-2 px-3 border-0" name="user_register">
                         <p class="small fw-bold mt-1 pt-1">Already have an account? <a href="user_login.php" class="text-danger">  Login</a></p>
                     </div>
                 </form>
@@ -62,3 +68,45 @@
 
 </body>
 </html>
+
+<!-- session -->
+
+<?php
+
+if(isset($_POST['user_register'])){
+    $user_username=$_POST['user_username'];
+    $user_email=$_POST['user_email'];
+    $user_image=$_FILES['user_image']['name'];
+    $user_image_tmp=$_FILES['user_image']['tmp_name'];
+    $user_password=md5($_POST['user_password']);
+    $user_confirm_password=md5($_POST['conf_user_password']);
+    $user_address=$_POST['user_address'];
+    $user_contact=$_POST['user_contact'];
+    $user_ip=getIPAddress();
+
+// select query
+$select_query = "SELECT * FROM user_table WHERE user_name='$user_username' AND user_email='$user_email' AND user_phone='$user_contact' ";
+$result=mysqli_query($connection, $select_query);
+$rows_count=mysqli_num_rows($result);
+if($rows_count>0){
+    echo "<script>alert('Username, Email or Mobile number already exist')</script>";
+}else if($user_password!=$user_confirm_password){
+    echo "<script>alert('Password and Confirm Password does not match')</script>";
+}else{
+
+
+    // insert_query
+    move_uploaded_file($user_image_tmp, "./user_images/$user_image");
+    $insert_query="INSERT INTO `user_table` (user_name, user_email, user_password, user_image, user_ip, user_address, user_phone) VALUES ('$user_username', '$user_email', '$user_password', '$user_image', '$user_ip', '$user_address', '$user_contact')";
+    $sql_execute=mysqli_query($connection, $insert_query);
+    
+    if($sql_execute){
+        echo "<script>alert('Registration Successful');
+        window.location = '../index.php';
+        </script>";
+    } else {
+        die(mysqli_error($connection));
+    }
+}
+}
+?>
