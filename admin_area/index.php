@@ -67,6 +67,7 @@
     <li><a class="dropdown-item" href="index.php?insert_category" class="nav-link text-light bg-info m-1 p-2">Insert Categories</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">View Categories</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Categories</a></li>
+    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Categories</a></li>
   </ul>
 </div>
 
@@ -78,6 +79,7 @@
     <li><a class="dropdown-item" href="insert_product.php?insert_product" class="nav-link text-light bg-info m-1 p-2">Insert Products</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">View Products</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Products</a></li>
+    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Products</a></li>
   </ul>
 
 
@@ -88,6 +90,7 @@
     <li><a class="dropdown-item" href="index.php?insert_brand" class="nav-link text-light bg-info m-1 p-2">Insert Brands</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">View Brands</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Brands</a></li>
+    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Brands</a></li>
   </ul>
 
   <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">View Orders</button>
