@@ -91,8 +91,8 @@ if(!$db_select){
 
 <!-- third part -->
 <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Eco Friendly Lether Bags</p>
+    <h3 class="text-center">Web Shop</h3>
+    <p class="text-center">Eco Friendly Leather Bags</p>
 </div>
 
 
