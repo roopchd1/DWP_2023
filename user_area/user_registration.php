@@ -97,9 +97,32 @@ if($rows_count>0){
 
 
     // insert_query
-    move_uploaded_file($user_image_tmp, "./user_images/$user_image");
+    /* move_uploaded_file($user_image_tmp, "./user_images/$user_image");
     $insert_query="INSERT INTO `user_table` (user_name, user_email, user_password, user_image, user_ip, user_address, user_phone) VALUES ('$user_username', '$user_email', '$hash_password', '$user_image', '$user_ip', '$user_address', '$user_contact')";
-    $sql_execute=mysqli_query($connection, $insert_query);
+    $sql_execute=mysqli_query($connection, $insert_query); */
+
+// insert_query with prepared statement
+move_uploaded_file($user_image_tmp, "./user_images/$user_image");
+$insert_query = "INSERT INTO `user_table` (user_name, user_email, user_password, user_image, user_ip, user_address, user_phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt = mysqli_prepare($connection, $insert_query);
+
+// Bind parameters
+mysqli_stmt_bind_param($stmt, "sssssss", $user_username, $user_email, $hash_password, $user_image, $user_ip, $user_address, $user_contact);
+
+// Execute statement
+$sql_execute = mysqli_stmt_execute($stmt);
+
+// Close statement
+mysqli_stmt_close($stmt);
+
+
+
+
+
+
+
+
+
     
     if($sql_execute){
         echo "<script>alert('Registration Successful');

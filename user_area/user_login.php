@@ -46,25 +46,44 @@
 </html>
 
 
+
+
 <?php
 
 if(isset($_POST['user_login'])){
-    $user_username=$_POST['user_username'];
-    $user_password=$_POST['user_password'];
-    
-    $select_query="SELECT * FROM `user_table` WHERE user_name='$user_username'";
-    $result=mysqli_query($connection, $select_query);
-    $row_count=mysqli_num_rows($result);
-    $row_data=mysqli_fetch_assoc($result);
-    if($row_count>0){
+    $user_username = $_POST['user_username'];
+    $user_password = $_POST['user_password'];
+
+    // SELECT query using a prepared statement
+    $select_query = "SELECT * FROM `user_table` WHERE user_name=?";
+    $stmt = mysqli_prepare($connection, $select_query);
+
+    // Bind the parameters
+    mysqli_stmt_bind_param($stmt, "s", $user_username);
+
+    // Execute the statement
+    mysqli_stmt_execute($stmt);
+
+    // Get the result
+    $result = mysqli_stmt_get_result($stmt);
+
+    // Fetch the data
+    $row_data = mysqli_fetch_assoc($result);
+
+    // Check the number of rows
+    $row_count = mysqli_num_rows($result);
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+
+    if($row_count > 0){
+        // If there are rows, verify the password using password_verify
         if(password_verify($user_password, $row_data['user_password'])){
             echo "<script>alert('Login Successful!')</script>";
-
-        }else{
+        } else {
             echo "<script>alert('Invalid Password!')</script>";
         }
-
-    }else{
+    } else {
         echo "<script>alert('Invalid Credentials!')</script>";
     }
 }
