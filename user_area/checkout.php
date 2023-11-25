@@ -1,19 +1,6 @@
 <?php
-require("../includes/connect.php");
-$connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
-
-if(!$connection){
-    die("database error2222");
-
-}
-$db_select=mysqli_select_db($connection, DB_NAME);
-
-if(!$db_select){
-    die("database error3333:" . mysqli_error($connection));
-}
-
+session_start();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +14,15 @@ if(!$db_select){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body{
+            overflow: hidden;
+        }
+        
+    </style>
+
+
 </head>
 <body>
     <!-- navbar -->
@@ -35,7 +30,7 @@ if(!$db_select){
         <!-- first part -->
         <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
-    <img src="./images/logo_greentan_white.png" alt="" class="logo">
+    <img src="../images/logo_greentan_white.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -48,10 +43,10 @@ if(!$db_select){
           <a class="nav-link" href="../display_all.php">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="user_registration.php">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="contact_us.php">Contact</a>
         </li>
         </ul>
       <form class="d-flex" role="search" action="search_product.php">
@@ -70,16 +65,25 @@ if(!$db_select){
     <li class="nav-item">
           <a class="nav-link" href="#">Welcome Guest</a>
         </li>
-    <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-    </li>
+        
+        
+        <?php if(!isset($_SESSION['username'])){
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='user_login.php'>Login</a>
+    </li>";
+          }else{
+            echo "<li class='nav-item'>
+          <a class='nav-link' href='logout.php'>Logout</a>
+    </li>";
+          }?>
+    
     </ul>
 </nav>
 
 <!-- third part -->
 <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Eco Friendly Lether Bags</p>
+    <h3 class="text-center">GreenTan - Leather Bags</h3>
+    <p class="text-center">Eco Friendly Leather Bags</p>
 </div>
 
 
@@ -95,7 +99,7 @@ if(!$db_select){
                     include('user_login.php');
 
                 }else{
-                    include('../payment.php');
+                    include('payment.php');
                 }
 
 

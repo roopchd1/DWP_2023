@@ -12,7 +12,7 @@ $db_select=mysqli_select_db($connection, DB_NAME);
 if(!$db_select){
     die("database error3333:" . mysqli_error($connection));
 }
-
+session_start();
 ?>
 
 
@@ -29,6 +29,12 @@ if(!$db_select){
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+        
+    </style>
 </head>
 <body>
     <!-- navbar -->
@@ -49,16 +55,16 @@ if(!$db_select){
           <a class="nav-link" href="display_all.php">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="./user_area/user_registration.php">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="contact_us.php">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
+          <a class="nav-link" href="cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Total Price: <?php total_cart_price();?>kr.</a>
+          <a class="nav-link" href="cart.php">Total Price: <?php total_cart_price();?>kr.</a>
         </li>
       </ul>
       <form class="d-flex" role="search" action="search_product.php">
@@ -80,12 +86,27 @@ if(!$db_select){
 <!-- second part -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
     <ul class="navbar-nav me-auto">
-    <li class="nav-item">
-          <a class="nav-link" href="#">Welcome Guest</a>
-        </li>
-    <li class="nav-item">
-          <a class="nav-link" href="./user_area/user_login.php">Login</a>
-    </li>
+    <?php
+        if(!isset($_SESSION['username'])){
+                echo "<li class='nav-item'>
+                <a class='nav-link' href='#'>Welcome Guest</a>
+              </li>";
+          }else{
+                echo "<li class='nav-item'>
+                <a class='nav-link' href='#'>Welcome ".$_SESSION['username']."</a>
+              </li>";
+          }
+        
+        if(!isset($_SESSION['username'])){
+                  echo "<li class='nav-item'>
+                  <a class='nav-link' href='user_area/user_login.php'>Login</a>
+            </li>";
+              }else{
+                echo "<li class='nav-item'>
+                <a class='nav-link' href='user_area/logout.php'>Logout</a>
+                </li>";
+        }
+    ?>
     </ul>
 </nav>
 

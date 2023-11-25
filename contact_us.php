@@ -34,7 +34,7 @@ session_start();
     <!-- navbar -->
     <div class="container-fluid p-0">
         <!-- first part -->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
     <img src="./images/logo_greentan_white.png" alt="" class="logo">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,27 +49,26 @@ session_start();
           <a class="nav-link" href="display_all.php">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user_area/user_registration.php">Register</a>
+          <a class="nav-link" href="./user_area/user_registration.php">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="contact_us.php">Contact</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="cart.php">Total Price: <?php total_cart_price();?>kr.</a>
         </li>
       </ul>
-      <form class="d-flex" action="" method="get">
+      <form class="d-flex" role="search" action="search_product.php">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-        <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
+        <button class="btn btn-outline-light" type="submit">Search</button>
         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
-      </form>
+      </form> -->
     </div>
   </div>
 </nav>
-
 
 <!-- calling cart function -->
 
@@ -79,94 +78,6 @@ session_start();
 ?>
 
 
-<!-- second part -->
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-    <ul class="navbar-nav me-auto">
-    <?php
-        if(!isset($_SESSION['username'])){
-                echo "<li class='nav-item'>
-                <a class='nav-link' href='#'>Welcome Guest</a>
-              </li>";
-          }else{
-                echo "<li class='nav-item'>
-                <a class='nav-link' href='#'>Welcome ".$_SESSION['username']."</a>
-              </li>";
-          }
-        
-        if(!isset($_SESSION['username'])){
-                  echo "<li class='nav-item'>
-                  <a class='nav-link' href='user_area/user_login.php'>Login</a>
-            </li>";
-              }else{
-                echo "<li class='nav-item'>
-                <a class='nav-link' href='user_area/logout.php'>Logout</a>
-                </li>";
-        }
-    ?>
-    </ul>
-</nav>
-
-<!-- third part -->
-<div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Eco Friendly Lether Bags</p>
-</div>
-
-
-<!-- fourth part -->
-<div class="row px-1">
-
-
-    <div class="col-md-10">
-        <!-- products -->
-        
-        <div class="row">
-
-          <!-- fething products -->
-      <?php
-        // calling function
-        search_product();
-        get_unique_category();
-        get_unique_brand();
-        
-      ?>
-          
-      <!-- end of row -->      
-        </div>
-      <!-- end of column -->
-    </div>
-
-    <!-- sidenav -->
-
-    <div class="col-md-2 bg-dark p-0">
-      <!-- Offers -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
-        </li>
-
-        <?php
-
-        getbrand();
-
-      ?>
-        
-      </ul>
-
-      <!-- categories -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
-        </li>
-
-      <?php
-
-        getcategory();
-
-      ?>
-      </ul>
         
     </div>
 </div>
@@ -174,9 +85,11 @@ session_start();
 
 <!-- footer part -->
     
-<?php
-include("./includes/footer.php")
-?>
+<div class="bg-success p-3 text-center text-white">
+    <p>All rights reserved @Rupinder - DWP Assignment</p>
+
+
+</div>
     
     </div>
     
