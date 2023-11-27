@@ -86,11 +86,11 @@ if ($result_query) {
 }
 
 // Insert into orders_pending using prepared statement
-$insert_pending_orders = "INSERT INTO `orders_pending` (user_id, invoice_number, product_id, quantity, order_status) VALUES (?, ?, ?, ?, ?)";
+$insert_pending_orders = "INSERT INTO `orders_pending` (order_id, user_id, invoice_number, product_id, quantity, order_status) VALUES (?, ?, ?, ?, ?, ?)";
 $stmt_pending_orders = mysqli_prepare($connection, $insert_pending_orders);
 
 // Bind parameters
-mysqli_stmt_bind_param($stmt_pending_orders, "iisis", $user_id, $invoice_number, $product_id, $quantity, $status);
+mysqli_stmt_bind_param($stmt_pending_orders, "iiiiis", $order_id, $user_id, $invoice_number, $product_id, $quantity, $status);
 
 // Execute statement
 $result_pending_orders = mysqli_stmt_execute($stmt_pending_orders);

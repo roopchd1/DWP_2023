@@ -105,7 +105,7 @@ session_start();
 
 <!-- third part -->
 <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
+    <h3 class="text-center">Web Store</h3>
     <p class="text-center">Eco Friendly Lether Bags</p>
 </div>
 

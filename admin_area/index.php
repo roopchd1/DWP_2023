@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +16,21 @@
     <link rel="stylesheet" href="../css/style.css">
     
     <style>
+        body{
+            overflow-x: hidden;
+        }
         .admin_image{
     width:100px;
     object-fit: contain;
+        }
+        .footer{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .product_img{
+            width: 10%;
+            object-fit: contain;
         }
     </style>
     
@@ -77,7 +90,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="insert_product.php?insert_product" class="nav-link text-light bg-info m-1 p-2">Insert Products</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">View Products</a></li>
+    <li><a class="dropdown-item" href="index.php?view_products" class="nav-link text-light bg-info m-1 p-2">View Products</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Products</a></li>
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Products</a></li>
   </ul>
@@ -130,13 +143,16 @@
             if(isset($_GET['insert_brand'])){
                 include('insert_brands.php');
             }
+            if(isset($_GET['view_products'])){
+                include('view_products.php');
+            }
         ?>
         </div>
 
 
         <!-- footer part -->
     
-<div class="bg-primary p-2 text-center text-white">
+<div class="bg-primary p-2 text-center text-white footer">
     <p>All rights reserved @Rupinder - DWP Assignment</p>
 
 

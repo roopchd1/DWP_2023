@@ -160,6 +160,18 @@ session_start();
 
       <ul class="navbar-nav me-auto text-center">
         <li class="nav-item bg-success">
+          <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
+        </li>
+
+      <?php
+
+        getcategory();
+
+      ?>
+      </ul>
+
+      <ul class="navbar-nav me-auto text-center">
+        <li class="nav-item bg-success">
           <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
         </li>
 
@@ -171,19 +183,33 @@ session_start();
         
       </ul>
 
-      <!-- categories -->
+      <!-- news section -->
 
       <ul class="navbar-nav me-auto text-center">
         <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
+          <a href="#" class="nav-link text-light"><h5>Latest News</h5></a>
         </li>
 
-      <?php
+      <!-- <?php
+
+        getcategory();
+
+      ?> -->
+      </ul>
+
+      <!-- news section -->
+
+      <ul class="navbar-nav me-auto text-center">
+        <li class="nav-item bg-success">
+          <a href="#" class="nav-link text-light"><h5>Special Offer</h5></a>
+        </li>
+
+      <!-- <?php
 
         getcategory();
 
       ?>
-      </ul>
+      </ul> -->
         
     </div>
 </div>
