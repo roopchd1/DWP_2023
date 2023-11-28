@@ -125,9 +125,6 @@
     }
     
 
-
-
-
     // displaying the side bar brand
 
     function getbrand(){

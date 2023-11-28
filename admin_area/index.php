@@ -32,6 +32,9 @@
             width: 10%;
             object-fit: contain;
         }
+        .class-container{
+            margin-bottom: 100px;
+        }
     </style>
     
 
@@ -106,9 +109,11 @@
     <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Brands</a></li>
   </ul>
 
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">View Orders</button>
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">View Payments</button>
+  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">All Orders</button>
+  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">All Payments</button>
   <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">List Users</button>
+  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">News</button>
+  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Offers</button>
   <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Logout</button>
 </div>
 
@@ -135,7 +140,7 @@
 
 
         <!-- fourth part -->
-        <div class="class-container my-3">
+        <div class="class-container mt-3">
         <?php
             if(isset($_GET['insert_category'])){
                 include('insert_categories.php');
