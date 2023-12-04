@@ -1,5 +1,5 @@
 
--- DROP DATABASE IF EXISTS webshop;
+/* DROP DATABASE IF EXISTS webshop; */
 CREATE DATABASE IF NOT EXISTS webshop;
 USE webshop;
 

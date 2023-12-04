@@ -1,6 +1,13 @@
 <?php
 require("includes/connect.php");
-include("./globalfunctions/common_functions.php");
+//include("./globalfunctions/common_function.php");
+// all functions separated
+include("./globalfunctions/product_function.php");
+include("./globalfunctions/sidenav_function.php");
+include("./globalfunctions/search_function.php");
+include("./globalfunctions/details_function.php");
+include("./globalfunctions/cart_function.php");
+include("./globalfunctions/getting_ip_function.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -39,196 +46,109 @@ session_start();
 </head>
 <body>
     <!-- navbar -->
-    <div class="container-fluid p-0">
-        <!-- first part -->
-        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
-  <div class="container-fluid">
-    <img src="./images/logo_greentan_white.png" alt="" class="logo">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="display_all.php">Products</a>
-        </li>
-        <?php
-        if(isset($_SESSION['username'])){
-          echo '<li class="nav-item">
-          <a class="nav-link" href="./user_area/profile.php">My Account</a>
-        </li>';
-        }else{
-          echo '<li class="nav-item">
-          <a class="nav-link" href="./user_area/user_registration.php">Register</a>
-        </li>';
-        }
+<div class="container-fluid p-0">
 
-        ?>
-        <li class="nav-item">
-          <a class="nav-link" href="contact_us.php">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php"><i class="fa-sharp fa-solid fa-cart-shopping"></i><sup><?php cart_qty(); ?></sup></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php">Total Price: <?php total_cart_price();?>kr.</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search" action="search_product.php">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-        <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
-        <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
-      </form>
-    </div>
-  </div>
-</nav>
+  <!-- header part/first part/second part -->
+    <?php
+    include("./includes/header.php")
+    ?>
 
-<!-- calling cart function -->
-
-<?php
-  cart();
-
-?>
-
-<!-- second part -->
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-    <ul class="navbar-nav me-auto">
-    
-
-        <?php 
-        if(!isset($_SESSION['username'])){
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='#'>Welcome Guest</a>
-        </li>";
-          }else{
-            echo "<li class='nav-item'>
-            <a class='nav-link' href='#'>Welcome ".$_SESSION['username']."</a>
-          </li>";
-          }
-
-       if(!isset($_SESSION['username'])){
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='user_area/user_login.php'>Login</a>
-    </li>";
-          }else{
-            echo "<li class='nav-item'>
-          <a class='nav-link' href='user_area/logout.php'>Logout</a>
-    </li>";
-          }?>
-    </ul>
-</nav>
-
-<!-- third part -->
-<div class="bg-light">
-    <h3 class="text-center">GreenTan - Leather Bags</h3>
-    <p class="text-center">Eco Friendly Leather Bags</p>
-</div>
+      <!-- fourth part -->
+      <div class="row px-1">
 
 
-<!-- fourth part -->
-<div class="row px-1">
+          <div class="col-md-10">
+              <!-- products -->
+              
+              <div class="row">
+
+                <!-- fething products -->
+            <?php
+              // calling function
+              getproducts();
+              get_unique_category();
+              get_unique_brand();
+              /* $ip = getIPAddress();  
+          echo 'User Real IP Address - '.$ip; */
+              
+            ?>
+                
+            <!-- end of row -->      
+              </div>
+            <!-- end of column -->
+          </div>
+
+          <!-- sidenav -->
+
+          <div class="col-md-2 bg-dark p-0">
+            <!-- Offers -->
+
+            <ul class="navbar-nav me-auto text-center">
+              <li class="nav-item bg-success">
+                <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
+              </li>
+
+            <?php
+
+              getcategory();
+
+            ?>
+            </ul>
+
+            <ul class="navbar-nav me-auto text-center">
+              <li class="nav-item bg-success">
+                <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
+              </li>
+
+              <?php
+
+              getbrand();
+
+            ?>
+              
+            </ul>
+
+            <!-- news section -->
+
+            <ul class="navbar-nav me-auto text-center">
+              <li class="nav-item bg-success">
+                <a href="#" class="nav-link text-light"><h5>Latest News</h5></a>
+              </li>
+
+            <!-- <?php
+
+              getcategory();
+
+            ?> -->
+            </ul>
+
+            <!-- news section -->
+
+            <ul class="navbar-nav me-auto text-center">
+              <li class="nav-item bg-success">
+                <a href="#" class="nav-link text-light"><h5>Special Offer</h5></a>
+              </li>
+
+            <!-- <?php
+
+              getcategory();
+
+            ?>
+            </ul> -->
+              
+          </div>
+      </div>
 
 
-    <div class="col-md-10">
-        <!-- products -->
-        
-        <div class="row">
-
-          <!-- fething products -->
-      <?php
-        // calling function
-        getproducts();
-        get_unique_category();
-        get_unique_brand();
-        /* $ip = getIPAddress();  
-    echo 'User Real IP Address - '.$ip; */
-        
-      ?>
+      <!-- footer part -->
           
-      <!-- end of row -->      
-        </div>
-      <!-- end of column -->
-    </div>
-
-    <!-- sidenav -->
-
-    <div class="col-md-2 bg-dark p-0">
-      <!-- Offers -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
-        </li>
-
       <?php
-
-        getcategory();
-
+      include("./includes/footer.php")
       ?>
-      </ul>
 
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
-        </li>
-
-        <?php
-
-        getbrand();
-
-      ?>
-        
-      </ul>
-
-      <!-- news section -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Latest News</h5></a>
-        </li>
-
-      <!-- <?php
-
-        getcategory();
-
-      ?> -->
-      </ul>
-
-      <!-- news section -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Special Offer</h5></a>
-        </li>
-
-      <!-- <?php
-
-        getcategory();
-
-      ?>
-      </ul> -->
-        
-    </div>
+    
 </div>
-
-
-<!-- footer part -->
-    
-<?php
-include("./includes/footer.php")
-?>
-    
-    </div>
-    
-
-
-
-
-    
-<!-- bootstrap js -->
+ '<!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>

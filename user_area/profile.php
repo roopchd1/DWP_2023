@@ -1,6 +1,14 @@
 <?php
 require("../includes/connect.php");
-include("../globalfunctions/common_functions.php");
+//include("../globalfunctions/common_functions.php");
+// all functions separated
+include("../globalfunctions/product_function.php");
+include("../globalfunctions/sidenav_function.php");
+include("../globalfunctions/search_function.php");
+include("../globalfunctions/details_function.php");
+include("../globalfunctions/cart_function.php");
+include("../globalfunctions/getting_ip_function.php");
+include("./user_functions/user_function.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){

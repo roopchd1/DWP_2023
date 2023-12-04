@@ -1,4 +1,20 @@
+<?php
+require("../includes/connect.php");
 
+$connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
+
+if(!$connection){
+    die("database error2222");
+
+}
+$db_select=mysqli_select_db($connection, DB_NAME);
+
+if(!$db_select){
+    die("database error3333:" . mysqli_error($connection));
+}
+
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +45,7 @@
             width: 100%;
         }
         .product_img{
-            width: 10%;
+            width: 80px;
             object-fit: contain;
         }
         .class-container{
@@ -81,9 +97,9 @@
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="index.php?insert_category" class="nav-link text-light bg-info m-1 p-2">Insert Categories</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">View Categories</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Categories</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Categories</a></li>
+    <li><a class="dropdown-item" href="index.php?view_categories" class="nav-link text-light bg-info m-1 p-2">View Categories</a></li>
+    <!-- <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Categories</a></li>
+    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Categories</a></li> -->
   </ul>
 </div>
 
@@ -94,8 +110,8 @@
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="insert_product.php?insert_product" class="nav-link text-light bg-info m-1 p-2">Insert Products</a></li>
     <li><a class="dropdown-item" href="index.php?view_products" class="nav-link text-light bg-info m-1 p-2">View Products</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Products</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Products</a></li>
+    <!-- <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Products</a></li>
+    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Products</a></li> -->
   </ul>
 
 
@@ -104,9 +120,9 @@
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="index.php?insert_brand" class="nav-link text-light bg-info m-1 p-2">Insert Brands</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">View Brands</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Brands</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Brands</a></li>
+    <li><a class="dropdown-item" href="index.php?view_brands" class="nav-link text-light bg-info m-1 p-2">View Brands</a></li>
+    <!-- <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Brands</a></li>
+    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Brands</a></li> -->
   </ul>
 
   <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">All Orders</button>
@@ -150,6 +166,30 @@
             }
             if(isset($_GET['view_products'])){
                 include('view_products.php');
+            }
+            if(isset($_GET['edit_products'])){
+                include('edit_products.php');
+            }
+            if(isset($_GET['delete_product'])){
+                include('delete_product.php');
+            }
+            if(isset($_GET['view_categories'])){
+                include('view_categories.php');
+            }
+            if(isset($_GET['view_brands'])){
+                include('view_brands.php');
+            }
+            if(isset($_GET['edit_category'])){
+                include('edit_category.php');
+            }
+            if(isset($_GET['edit_brand'])){
+                include('edit_brand.php');
+            }
+            if(isset($_GET['delete_category'])){
+                include('delete_category.php');
+            }
+            if(isset($_GET['delete_brand'])){
+                include('delete_brand.php');
             }
         ?>
         </div>
