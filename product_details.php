@@ -7,6 +7,7 @@ include("./globalfunctions/search_function.php");
 include("./globalfunctions/details_function.php");
 include("./globalfunctions/cart_function.php");
 include("./globalfunctions/getting_ip_function.php");
+include("./globalfunctions/offers._function.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -36,80 +37,51 @@ session_start();
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+        
+    </style>
 </head>
-<body>
+<body class="bg-dark">
     <!-- navbar -->
     <div class="container-fluid p-0">
-        <!-- header part/first part/second part -->
-    <?php
-    include("./includes/header.php")
-    ?>
+              <!-- header part/first part/second part -->
+          <?php
+            include("./includes/header.php")
+          ?>
+
+      <!-- fourth part -->
+      <div class="row px-1">
+          <div class="col-md-10">
+              <!-- products -->
+              
+              <div class="row">            
+                <!-- fething products -->
+                  <?php
+                    // calling function
+                    view_details();
+                    get_unique_category();
+                    get_unique_brand();        
+                  ?>          
+            <!-- end of row -->      
+              </div>
+            <!-- end of column -->
+          </div>
+
+          <!-- sidenav -->
+          <?php
+            include("./includes/side_nav.php")
+          ?>
+      </div>
 
 
-<!-- fourth part -->
-<div class="row px-1">
-
-
-    <div class="col-md-10">
-        <!-- products -->
-        
-        <div class="row">
-            
-          <!-- fething products -->
-      <?php
-        // calling function
-        view_details();
-        get_unique_category();
-        get_unique_brand();
-        
-      ?>
-          
-      <!-- end of row -->      
-        </div>
-      <!-- end of column -->
-    </div>
-
-    <!-- sidenav -->
-
-    <div class="col-md-2 bg-dark p-0">
-      <!-- Offers -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
-        </li>
-
-        <?php
-
-        getbrand();
-
-      ?>
-        
-      </ul>
-
-      <!-- categories -->
-
-      <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-success">
-          <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
-        </li>
-
-      <?php
-
-        getcategory();
-
-      ?>
-      </ul>
-        
-    </div>
-</div>
-
-
-<!-- footer part -->
-    
-<?php
-include("./includes/footer.php")
-?>
+                  <!-- footer part -->
+                      
+                  <?php
+                  include("./includes/footer.php")
+                  ?>
     
     </div>
     

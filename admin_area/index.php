@@ -158,8 +158,8 @@ session_start();
                     <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?all_payments" class="text-decoration-none text-light">All Payments</a></button></div>
                     
                     <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?list_users" class="text-decoration-none text-light">List Users</a></button></div>
-                    
-                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Offers</button></div>
+
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?daily_offers" class="text-decoration-none text-light">Offers</a></button></div>
                     
                     <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Logout</button></div>
                 </div>
@@ -220,6 +220,9 @@ session_start();
             }
             if(isset($_GET['insert_news'])){
                 include('insert_news.php');
+            }
+            if(isset($_GET['daily_offers'])){
+                include('daily_offers.php');
             }
         ?>
         </div>

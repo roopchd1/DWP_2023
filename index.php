@@ -9,6 +9,7 @@ include("./globalfunctions/details_function.php");
 include("./globalfunctions/cart_function.php");
 include("./globalfunctions/getting_ip_function.php");
 include("./globalfunctions/news_function.php");
+include("./globalfunctions/offers._function.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -54,7 +55,7 @@ session_start();
         include("./includes/header.php")
         ?>
 
-      <!-- fourth part -->
+      <!-- third part -->
     <div class="row px-1">
           <div class="col-md-10">
               <!-- products -->
@@ -76,42 +77,23 @@ session_start();
           </div>
 
             <!-- sidenav -->
-
-          <div class="col-md-2 p-0">
-            
-            <!-- Offers -->
-
-            <ul class="navbar-nav me-auto text-center mb-5">
-              <li class="nav-item bg-primary">
-                <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
-              </li>
-                      <?php
-                        getcategory();
-                      ?>
-            </ul>
-
-            <ul class="navbar-nav me-auto text-center mt-5">
-                    <li class="nav-item bg-primary">
-                      <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
-                    </li>
-
-                    <?php
-                    getbrand();
-                  ?>
-            </ul>
-                            
-          </div>
+          <?php
+            include("./includes/side_nav.php")
+          ?>
     </div>
       
     <!-- news section -->
             <div class="text-primary mt-5 mb-5">
                 <h3 class="text-center">Latest in Leather Industry</h3>
-                <p class="text-center">News Update</p>
+                <p class="text-center text-light">News Update</p>
             </div>
               <div class="row">
-                  <?php getNews(); ?>
+                  <?php getNews(); 
+                  ?>
               </div>
             </div>
+
+            
  
 
       <!-- footer part -->

@@ -29,7 +29,7 @@
                 <div class='container'>
                     <div class='row'>
                         <!-- Product Card -->
-                        <div class='col-md-4 mb-4'>
+                        <div class='col-md-4 mb-4 mx-5'>
                             <div class='card'>
                                 <img src='./admin_area/product_images/$product_image1' class='card-img-top' alt='$product_title'>
                                 <div class='card-body'>

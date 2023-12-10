@@ -103,3 +103,14 @@ CREATE TABLE IF NOT EXISTS news_section (
 );
 ALTER TABLE news_section
 ADD COLUMN news_content TEXT NOT NULL;
+
+
+CREATE TABLE IF NOT EXISTS daily_offers (
+    offer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    offer_price VARCHAR(255),
+    start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    end_date DATE NOT NULL,
+    status VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);

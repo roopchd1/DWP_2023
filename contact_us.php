@@ -21,7 +21,6 @@ if(!$db_select){
 session_start();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,33 +34,84 @@ session_start();
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+        
+    </style>
 </head>
-<body>
+<body class="bg-dark">
     <!-- navbar -->
-    <div class="container-fluid p-0">
-        <!-- header part/first part/second part -->
-    <?php
-    include("./includes/header.php")
-    ?>
+<div class="container-fluid p-0">
 
-
-<!-- footer part -->
-    
-<div class="bg-success p-3 text-center text-white">
-    <p>All rights reserved @Rupinder - DWP Assignment</p>
-
-
-</div>
-    
+  <!-- header part/first part/second part -->
+        <?php
+        include("./includes/header.php")
+        ?>
+        
+        <div class="container-fluid m-4 text-light justify-content-center">
+    <div class="row d-flex">
+        <div class="col-lg-6 col-xl-4 m-5">
+            <img src="./images/contact-us.png" alt="Contact_us" class="img-fluid">
+        </div>
+        <div class="col-lg-6 col-xl-5 mt-3 mb-5">
+            <form action="" method="post" autocomplete="off">
+                <div class="form-group mb-3">
+                    <label for="yourname" class="text-light">Name</label>
+                    <input type="text" id="yourname" name="yourname" placeholder="Enter your name" required class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email" class="text-light">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="contact_number" class="text-light">Contact No.</label>
+                    <input type="text" id="contact_number" name="contact_number" placeholder="Enter your contact no." required class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="message" class="text-light">Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message" required class="form-control"></textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <input type="submit" class="btn btn-primary" name="submit" value="Send Message">
+                </div>                
+            </form>
+        </div>
     </div>
-    
+</div>
 
-
-
-
-    
-<!-- bootstrap js -->
+      <!-- footer part -->
+          
+      <?php
+      include("./includes/footer.php")
+      ?>
+</div>
+ '<!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
 </html>
+
+<?php
+// Function to sanitize input data
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize and validate each input field
+    $yourname = sanitizeInput($_POST['username']);
+    $email = sanitizeInput($_POST['email']);
+    $contactNumber = sanitizeInput($_POST['contact_number']);
+    $message = sanitizeInput($_POST['message']);
+
+    echo "<script>alert('Message sent successfully!')</script>";
+    echo "<script>window.open('./index.php','_self')</script>";
+    exit();
+}
+?>
