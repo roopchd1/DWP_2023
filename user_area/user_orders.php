@@ -39,13 +39,13 @@ $user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
 <table class="table table-bordered mt-5 bg-primary">
     <thead class="bg-secondary">
         <tr>
-            <th>Sr.No.</th>
-            <th>Amount Due</th>
-            <th>Total Products</th>
-            <th>Invoice Number</th>
-            <th>Date</th>
-            <th>Complete/Incomplete</th>
-            <th>Status</th>
+            <th class="bg-info text-dark">Sr.No.</th>
+            <th class="bg-info text-dark">Amount Due</th>
+            <th class="bg-info text-dark">Total Products</th>
+            <th class="bg-info text-dark">Invoice Number</th>
+            <th class="bg-info text-dark">Date</th>
+            <th class="bg-info text-dark">Complete/Incomplete</th>
+            <th class="bg-info text-dark">Status</th>
         </tr>
     </thead>
     <tbody class="bg-secondary text-light">
@@ -76,17 +76,17 @@ $user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
             $order_status = ($order_status == 'pending') ? 'Incomplete' : 'Complete';
 
             echo "<tr>
-                    <td>$number</td>
-                    <td>$amount_due</td>
-                    <td>$total_products</td>
-                    <td>$invoice_number</td>
-                    <td>$order_date</td>
-                    <td>$order_status</td>";
+                    <td class='bg-secondary text-light'>$number</td>
+                    <td class='bg-secondary text-light'>$amount_due</td>
+                    <td class='bg-secondary text-light'>$total_products</td>
+                    <td class='bg-secondary text-light'>$invoice_number</td>
+                    <td class='bg-secondary text-light'>$order_date</td>
+                    <td class='bg-secondary text-light'>$order_status</td>";
 
             if ($order_status == 'Complete') {
-                echo "<td>Paid</td>";
+                echo "<td class='bg-secondary text-light'>Paid</td>";
             } else {
-                echo "<td><a href='confirm_payment.php?order_id=$order_id'>Confirm</a></td>";
+                echo "<td class='bg-secondary text-light'><a href='confirm_payment.php?order_id=$order_id' class='text-light text-decoration-none'>Confirm</a></td>";
             }
 
             echo "</tr>";

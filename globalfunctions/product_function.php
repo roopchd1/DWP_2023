@@ -26,7 +26,7 @@
                   <h5 class='card-title'>$product_title</h5>
                   
                   <p class='card-text'>Price: $product_price</p>
-                  <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
+                  <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
           </div>
@@ -68,7 +68,7 @@
                   <h5 class='card-title'>$product_title</h5>
                   <p class='card-text'>$product_description.</p>
                   <p class='card-text'>Price: $product_price</p>
-                  <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
+                  <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
           </div>
@@ -111,7 +111,7 @@
                   <h5 class='card-title'>$product_title</h5>
                   <p class='card-text'>$product_description.</p>
                   <p class='card-text'>Price: $product_price</p>
-                  <a href='index.php?add_to_cart=$product_id' class='btn btn-success'>Add to cart</a>
+                  <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
                   <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
           </div>

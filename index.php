@@ -8,6 +8,7 @@ include("./globalfunctions/search_function.php");
 include("./globalfunctions/details_function.php");
 include("./globalfunctions/cart_function.php");
 include("./globalfunctions/getting_ip_function.php");
+include("./globalfunctions/news_function.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -44,101 +45,74 @@ session_start();
         
     </style>
 </head>
-<body>
+<body class="bg-dark">
     <!-- navbar -->
 <div class="container-fluid p-0">
 
   <!-- header part/first part/second part -->
-    <?php
-    include("./includes/header.php")
-    ?>
+        <?php
+        include("./includes/header.php")
+        ?>
 
       <!-- fourth part -->
-      <div class="row px-1">
-
-
+    <div class="row px-1">
           <div class="col-md-10">
               <!-- products -->
               
-              <div class="row">
+            <div class="row">
 
                 <!-- fething products -->
-            <?php
-              // calling function
-              getproducts();
-              get_unique_category();
-              get_unique_brand();
-              /* $ip = getIPAddress();  
-          echo 'User Real IP Address - '.$ip; */
-              
-            ?>
-                
-            <!-- end of row -->      
-              </div>
-            <!-- end of column -->
+                    <?php
+                      // calling function
+                      getproducts();
+                      get_unique_category();
+                      get_unique_brand();
+                      /* $ip = getIPAddress();  
+                  echo 'User Real IP Address - '.$ip; */                      
+                    ?>                
+                  <!-- end of row -->      
+            </div>
+                <!-- end of column -->
           </div>
 
-          <!-- sidenav -->
+            <!-- sidenav -->
 
-          <div class="col-md-2 bg-dark p-0">
+          <div class="col-md-2 p-0">
+            
             <!-- Offers -->
 
-            <ul class="navbar-nav me-auto text-center">
-              <li class="nav-item bg-success">
+            <ul class="navbar-nav me-auto text-center mb-5">
+              <li class="nav-item bg-primary">
                 <a href="#" class="nav-link text-light"><h5>Shop Categories</h5></a>
               </li>
-
-            <?php
-
-              getcategory();
-
-            ?>
+                      <?php
+                        getcategory();
+                      ?>
             </ul>
 
-            <ul class="navbar-nav me-auto text-center">
-              <li class="nav-item bg-success">
-                <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
-              </li>
+            <ul class="navbar-nav me-auto text-center mt-5">
+                    <li class="nav-item bg-primary">
+                      <a href="#" class="nav-link text-light"><h5>Branded Bags</h5></a>
+                    </li>
 
-              <?php
-
-              getbrand();
-
-            ?>
-              
+                    <?php
+                    getbrand();
+                  ?>
             </ul>
-
-            <!-- news section -->
-
-            <ul class="navbar-nav me-auto text-center">
-              <li class="nav-item bg-success">
-                <a href="#" class="nav-link text-light"><h5>Latest News</h5></a>
-              </li>
-
-            <!-- <?php
-
-              getcategory();
-
-            ?> -->
-            </ul>
-
-            <!-- news section -->
-
-            <ul class="navbar-nav me-auto text-center">
-              <li class="nav-item bg-success">
-                <a href="#" class="nav-link text-light"><h5>Special Offer</h5></a>
-              </li>
-
-            <!-- <?php
-
-              getcategory();
-
-            ?>
-            </ul> -->
-              
+                            
           </div>
-      </div>
-
+    </div>
+      
+    <!-- news section -->
+            <div class="text-primary mt-5 mb-5">
+                <h3 class="text-center">Latest in Leather Industry</h3>
+                <p class="text-center">News Update</p>
+            </div>
+              <div class="row">
+                  <?php getNews(); ?>
+              </div>
+            </div>
+ 
 
       <!-- footer part -->
           

@@ -51,7 +51,12 @@ session_start();
         .class-container{
             margin-bottom: 100px;
         }
+        .list_image{
+            width: 80px;
+            object-fit: contain;
+        }
     </style>
+    
     
 
 </head>
@@ -67,11 +72,27 @@ session_start();
 
                 <nav class="navbar navbar-expand-lg">
                     <ul class="navbar-nav">
-                        <li class="nav-iem">
-                            <a href="" class="nav-link">Welcome guest</a>
-                        </li>
-                    </ul>
-                
+                    <?php 
+                            if(!isset($_SESSION['admin_username'])){
+                            echo "<li class='nav-item'>
+                            <a class='nav-link text-light' href='#'>Welcome Guest</a>
+                            </li>";
+                            }else{
+                                echo "<li class='nav-item'>
+                                <a class='nav-link text-light' href='#'>Welcome ".$_SESSION['admin_username']."</a>
+                            </li>";
+                            }
+
+                        if(!isset($_SESSION['admin_username'])){
+                            echo "<li class='nav-item'>
+                            <a class='nav-link text-light' href='admin_login.php'>Login</a>
+                        </li>";
+                            }else{
+                                echo "<li class='nav-item'>
+                            <a class='nav-link text-light' href='admin_logout.php'>Logout</a>
+                        </li>";
+                            }?>                        
+                    </ul>                
                 </nav>
             </div>
         </nav>
@@ -85,72 +106,63 @@ session_start();
         <div class="row">
             <div class="col-md-12 bg-secondary d-flex align-items-center">
                 <div class="p-3">
-                    <a href="#"><img src="../images/site favicon.png" alt="" class="admin_image"></a>
-                    <p class="text-light text-center">Admin Name</p>
+                    <a href="#"><img src="../images/site favicon.png" alt="" class="admin_image mb-3"></a>
+                    <?php 
+                    if(isset($_SESSION['admin_username'])) {
+                        echo "<p class='text-light text-center'>Admin: " . $_SESSION['admin_username'] . "</p>";
+                    } else {
+                        echo "<p class='text-light text-center'>Admin Name</p>";
+                    }
+                    ?>
                 </div>
 
-
-
                 <div class="dropdown">
-  <button class="btn btn  rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  Categories
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="index.php?insert_category" class="nav-link text-light bg-info m-1 p-2">Insert Categories</a></li>
-    <li><a class="dropdown-item" href="index.php?view_categories" class="nav-link text-light bg-info m-1 p-2">View Categories</a></li>
-    <!-- <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Categories</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Categories</a></li> -->
-  </ul>
-</div>
+                    <button class="btn btn  rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.php?insert_category" class="nav-link text-light bg-info m-1 p-2">Insert Categories</a></li>
+                        <li><a class="dropdown-item" href="index.php?view_categories" class="nav-link text-light bg-info m-1 p-2">View Categories</a></li>
+                    </ul>
+                </div>
+
+                <button class="btn  rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Products
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="insert_product.php?insert_product" class="nav-link text-light bg-info m-1 p-2">Insert Products</a></li>
+                        <li><a class="dropdown-item" href="index.php?view_products" class="nav-link text-light bg-info m-1 p-2">View Products</a></li>
+                    </ul>
 
 
-<button class="btn  rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  Products
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="insert_product.php?insert_product" class="nav-link text-light bg-info m-1 p-2">Insert Products</a></li>
-    <li><a class="dropdown-item" href="index.php?view_products" class="nav-link text-light bg-info m-1 p-2">View Products</a></li>
-    <!-- <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Products</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Products</a></li> -->
-  </ul>
+                    <button class="btn rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Brands
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.php?insert_brand" class="nav-link text-light bg-info m-1 p-2">Insert Brands</a></li>
+                        <li><a class="dropdown-item" href="index.php?view_brands" class="nav-link text-light bg-info m-1 p-2">View Brands</a></li>
+                    </ul>
 
+                    <div class="dropdown">
+                    <button class="btn btn  rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    News
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.php?insert_news" class="nav-link text-light bg-info m-1 p-2">Insert News</a></li>
+                        <li><a class="dropdown-item" href="index.php?all_news" class="nav-link text-light bg-info m-1 p-2">All News</a></li>
+                    </ul>
+                </div>
 
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 dropdown-toggle border border-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  Brands
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="index.php?insert_brand" class="nav-link text-light bg-info m-1 p-2">Insert Brands</a></li>
-    <li><a class="dropdown-item" href="index.php?view_brands" class="nav-link text-light bg-info m-1 p-2">View Brands</a></li>
-    <!-- <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Edit Brands</a></li>
-    <li><a class="dropdown-item" href="" class="nav-link text-light bg-info m-1 p-2">Delete Brands</a></li> -->
-  </ul>
-
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">All Orders</button>
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">All Payments</button>
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">List Users</button>
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">News</button>
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Offers</button>
-  <button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Logout</button>
-</div>
-
-
-
-
-                <!-- <div class="button text-center">
-                    <button class="my-3"><a href="index.php?insert_category" class="nav-link text-light bg-info m-1 p-2">Insert Categories</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">View Categories</a></button>
-                    <button><a href="insert_product.php" class="nav-link text-light bg-info m-1 p-2">Insert Products</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">View Products</a></button>
-                    <button><a href="index.php?insert_brand" class="nav-link text-light bg-info m-1 p-2">Insert Brands</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">View Brands</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">All Orders</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">All Payments</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">List Users</a></button>
-                    <button><a href="" class="nav-link text-light bg-info m-1 p-2">Logout</a></button>
-
-                
-                </div> -->
-
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?all_orders" class="text-decoration-none text-light">All Orders</a></button></div>
+                    
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?all_payments" class="text-decoration-none text-light">All Payments</a></button></div>
+                    
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?list_users" class="text-decoration-none text-light">List Users</a></button></div>
+                    
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Offers</button></div>
+                    
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Logout</button></div>
+                </div>
             </div>
         </div>
 
@@ -191,21 +203,35 @@ session_start();
             if(isset($_GET['delete_brand'])){
                 include('delete_brand.php');
             }
+            if(isset($_GET['all_orders'])){
+                include('all_orders.php');
+            }
+            if(isset($_GET['delete_orders'])){
+                include('delete_orders.php');
+            }
+            if(isset($_GET['all_payments'])){
+                include('all_payments.php');
+            }
+            if(isset($_GET['list_users'])){
+                include('list_users.php');
+            }
+            if(isset($_GET['delete_users'])){
+                include('delete_users.php');
+            }
+            if(isset($_GET['insert_news'])){
+                include('insert_news.php');
+            }
         ?>
         </div>
 
 
         <!-- footer part -->
     
-<div class="bg-primary p-2 text-center text-white footer">
-    <p>All rights reserved @Rupinder - DWP Assignment</p>
-
-
-</div>
+        <div class="bg-primary p-2 text-center text-white footer">
+            <p>All rights reserved @Rupinder - DWP Assignment</p>
+        </div>
 
     </div>
-
-
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

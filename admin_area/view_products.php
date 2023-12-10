@@ -4,14 +4,14 @@
 <table style="width: 90%; margin: auto;" class="table table-hover table-bordered mt-4">
     <thead>
         <tr class="text-center">
-            <th>Product ID</th>
-            <th>Product Title</th>
-            <th>Product Image</th>
-            <th>Product Price</th>
-            <th>Total Sold</th>
-            <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th class='bg-info text-dark text-center'>Product ID</th>
+            <th class='bg-info text-dark text-center'>Product Title</th>
+            <th class='bg-info text-dark text-center'>Product Image</th>
+            <th class='bg-info text-dark text-center'>Product Price</th>
+            <th class='bg-info text-dark text-center'>Total Sold</th>
+            <th class='bg-info text-dark text-center'>Status</th>
+            <th class='bg-info text-dark text-center'>Edit</th>
+            <th class='bg-info text-dark text-center'>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -28,20 +28,20 @@
             $number++;
         ?>
         <tr class='text-center'>
-            <td><?php echo $number; ?></td>
-            <td><?php echo $product_title; ?></td>
-            <td><img src='./product_images/<?php echo $product_image1; ?>' class='product_img'/></td>
-            <td><?php echo $product_price; ?></td>
-            <td><?php
+            <td class='bg-secondary text-light'><?php echo $number; ?></td>
+            <td class='bg-secondary text-light'><?php echo $product_title; ?></td>
+            <td class='bg-secondary text-light'><img src='./product_images/<?php echo $product_image1; ?>' class='product_img'/></td>
+            <td class='bg-secondary text-light'><?php echo $product_price; ?></td>
+            <td class='bg-secondary text-light'><?php
             $get_count="SELECT * FROM `orders_pending` WHERE product_id=$product_id";
             $result_count=mysqli_query($connection,$get_count);
             $rows_count=mysqli_num_rows($result_count);
             echo $rows_count;
 
             ?></td>
-            <td><?php echo $status; ?></td>
-            <td><a href='index.php?edit_products=<?php echo $product_id ?>' class='text-dark'><i class='fa-solid fa-pen-to-square'></i></a></td>
-            <td><a href='index.php?delete_product=<?php echo $product_id ?>' class='text-dark'><i class='fa-solid fa-trash'></i></a></td>
+            <td class='bg-secondary text-light'><?php echo $status; ?></td>
+            <td class='bg-secondary'><a href='index.php?edit_products=<?php echo $product_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
+            <td class='bg-secondary'><a href='index.php?delete_product=<?php echo $product_id ?>' class='text-light'><i class='fa-solid fa-trash'></i></a></td>
         </tr>
         <?php
         }

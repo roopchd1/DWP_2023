@@ -83,7 +83,7 @@
 </nav>
 
 <!-- third part -->
-<div class="bg-light">
+<div class="bg-light mb-5">
     <h3 class="text-center">GreenTan - Leather Bags</h3>
-    <p class="text-center">Eco Friendly Leather Bags</p>
+    <p class="text-center py-2">Eco Friendly Leather Bags</p>
 </div>

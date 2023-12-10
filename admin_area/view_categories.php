@@ -2,10 +2,10 @@
 <table style="width: 90%; margin: auto;" class="table table-hover table-bordered mt-4">
     <thead>
         <tr class="text-center">
-            <th>Sr.No.</th>
-            <th>Category Title</th>
-            <th>Edit Category</th>
-            <th>Delete Category</th>
+            <th class='bg-info text-dark text-center'>Sr.No.</th>
+            <th class='bg-info text-dark text-center'>Category Title</th>
+            <th class='bg-info text-dark text-center'>Edit Category</th>
+            <th class='bg-info text-dark text-center'>Delete Category</th>
         </tr>
     </thead>
     <tbody>
@@ -19,10 +19,10 @@
             $number++;
         ?>
         <tr class='text-center'>
-            <td><?php echo $number; ?></td>
-            <td><?php echo $category_title; ?></td>
-            <td><a href='index.php?edit_category=<?php echo $category_id ?>' class='text-dark'><i class='fa-solid fa-pen-to-square'></i></a></td>
-            <td><a href='index.php?delete_category=<?php echo $category_id ?>' class='text-dark'><i class='fa-solid fa-trash'></i></a></td>
+            <td class='bg-secondary text-light text-center'><?php echo $number; ?></td>
+            <td class='bg-secondary text-light text-center'><?php echo $category_title; ?></td>
+            <td class='bg-secondary text-light text-center'><a href='index.php?edit_category=<?php echo $category_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
+            <td class='bg-secondary text-light text-center'><a href='index.php?delete_category=<?php echo $category_id ?>' class='text-light'><i class='fa-solid fa-trash'></i></a></td>
         </tr>
         <?php
         }

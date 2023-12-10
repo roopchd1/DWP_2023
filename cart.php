@@ -110,7 +110,7 @@ session_start();
             if (isset($_POST['update_cart'])) {
                 $quantities = $_POST['qty'];
                 // Validate that the quantity is not negative
-                if ($quantities >= 0) {
+                if ($quantities >= 1) {
                     $update_cart = "UPDATE `cart_details` SET quantity=$quantities WHERE ip_address='$get_ip_add'";
                     $result_product_qty = mysqli_query($connection, $update_cart);
                     $total_price = $total_price * $quantities;

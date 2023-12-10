@@ -134,7 +134,7 @@ if(isset($_POST['user_register'])){
     $user_ip=getIPAddress();
 
 // select query
-$select_query = "SELECT * FROM user_table WHERE user_name='$user_username' AND user_email='$user_email' AND user_phone='$user_contact' ";
+$select_query = "SELECT * FROM `user_table` WHERE user_name='$user_username' AND user_email='$user_email' AND user_phone='$user_contact' ";
 $result=mysqli_query($connection, $select_query);
 $rows_count=mysqli_num_rows($result);
 if($rows_count>0){

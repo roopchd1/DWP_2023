@@ -6,6 +6,7 @@
             $get_product_id = $_GET['add_to_cart'];
             $get_ip_add = getIPAddress();
             $select_query="SELECT * FROM `cart_details` WHERE ip_address='$get_ip_add' AND product_id=$get_product_id";
+            $product_qty=1;
             $result_query=mysqli_query($connection, $select_query);
             $num_of_rows=mysqli_num_rows($result_query);
             if($num_of_rows>0){
@@ -13,7 +14,7 @@
                 echo "<script>window.open('index.php','_self')</script>";
             }
             else{
-                $insert_query="INSERT INTO `cart_details` (product_id, ip_address, quantity) VALUES ($get_product_id,'$get_ip_add',0)";
+                $insert_query="INSERT INTO `cart_details` (product_id, ip_address, quantity) VALUES ($get_product_id,'$get_ip_add',$product_qty)";
                 $result_query=mysqli_query($connection, $insert_query);
                 echo "<script>alert('Item added to the Cart!')</script>";
                 echo "<script>window.open('index.php','_self')</script>";
