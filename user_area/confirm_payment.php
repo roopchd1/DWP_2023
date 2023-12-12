@@ -1,45 +1,45 @@
 <?php
-require("../includes/connect.php");
-include("../globalfunctions/common_functions.php");
-$connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
+    require("../includes/connect.php");
+    
+    $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
-if(!$connection){
-    die("database error2222");
+        if(!$connection){
+            die("database error2222");
 
-}
-$db_select=mysqli_select_db($connection, DB_NAME);
-
-if(!$db_select){
-    die("database error3333:" . mysqli_error($connection));
-}
-
-session_start();
-
-
-if(isset($_GET['order_id'])){
-    $order_id = $_GET['order_id'];
-    //echo $order_id;
-
-    $select_data="SELECT * FROM `user_orders` WHERE order_id=$order_id";
-    $result=mysqli_query($connection, $select_data);
-    $row_fetch=mysqli_fetch_assoc($result);
-    $invoice_number=$row_fetch['invoice_number'];
-    $amount_due=$row_fetch['amount_due'];
-}
-if(isset($_POST['confirm_payment'])){
-    $invoice_number=$_POST['invoice_number'];
-    $amount=$_POST['amount'];
-    $payment_mode=$_POST['payment_mode'];
-    $inset_query="INSERT INTO `user_payments` (order_id, invoice_number,amount,payment_mode) VALUES ($order_id,$invoice_number,$amount,'$payment_mode')";
-    $result=mysqli_query($connection,$inset_query);
-    if($result){
-        echo "<h3 class='text-center text-light'>Payment Successful!</h3>";
-        echo "<script>window.open('profile.php?my_orders','_self')</script>";
     }
-    $update_orders="UPDATE `user_orders` SET order_status='Complete' where order_id=$order_id";
-    $result_orders=mysqli_query($connection,$update_orders);
+        $db_select=mysqli_select_db($connection, DB_NAME);
 
-}
+        if(!$db_select){
+            die("database error3333:" . mysqli_error($connection));
+    }
+
+    session_start();
+
+
+    if(isset($_GET['order_id'])){
+        $order_id = $_GET['order_id'];
+        //echo $order_id;
+
+        $select_data="SELECT * FROM `user_orders` WHERE order_id=$order_id";
+        $result=mysqli_query($connection, $select_data);
+        $row_fetch=mysqli_fetch_assoc($result);
+        $invoice_number=$row_fetch['invoice_number'];
+        $amount_due=$row_fetch['amount_due'];
+    }
+        if(isset($_POST['confirm_payment'])){
+            $invoice_number=$_POST['invoice_number'];
+            $amount=$_POST['amount'];
+            $payment_mode=$_POST['payment_mode'];
+            $inset_query="INSERT INTO `user_payments` (order_id, invoice_number,amount,payment_mode) VALUES ($order_id,$invoice_number,$amount,'$payment_mode')";
+            $result=mysqli_query($connection,$inset_query);
+            if($result){
+                echo "<h3 class='text-center text-light'>Payment Successful!</h3>";
+                echo "<script>window.open('profile.php?my_orders','_self')</script>";
+            }
+            $update_orders="UPDATE `user_orders` SET order_status='Complete' where order_id=$order_id";
+            $result_orders=mysqli_query($connection,$update_orders);
+
+    }
 ?>
 
 <!DOCTYPE html>

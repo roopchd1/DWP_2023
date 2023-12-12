@@ -9,31 +9,23 @@
     
 </head>
 <body>
-<?php
-$username = $_SESSION['username'];
+        <?php
+                $username = $_SESSION['username'];
 
-// Using a prepared statement for user retrieval
-$get_user = "SELECT * FROM `user_table` WHERE user_name=?";
-$stmt_get_user = mysqli_prepare($connection, $get_user);
+                // Using a prepared statement for user retrieval
+                $get_user = "SELECT * FROM `user_table` WHERE user_name=?";
+                $stmt_get_user = mysqli_prepare($connection, $get_user);
 
-// Bind parameter
-mysqli_stmt_bind_param($stmt_get_user, "s", $username);
+                // Bind parameter
+                mysqli_stmt_bind_param($stmt_get_user, "s", $username);
+                mysqli_stmt_execute($stmt_get_user);
+                $result = mysqli_stmt_get_result($stmt_get_user);
+                $row_fetch = mysqli_fetch_assoc($result);
+                mysqli_stmt_close($stmt_get_user);
 
-// Execute statement
-mysqli_stmt_execute($stmt_get_user);
-
-// Get the result
-$result = mysqli_stmt_get_result($stmt_get_user);
-
-// Fetch the data
-$row_fetch = mysqli_fetch_assoc($result);
-
-// Close the statement
-mysqli_stmt_close($stmt_get_user);
-
-// Access user_id
-$user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
-?>
+                // Access user_id
+                $user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
+        ?>
 
 <h3 class="text-primary">All my orders</h3>
 <table class="table table-bordered mt-5 bg-primary">
@@ -46,6 +38,7 @@ $user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
             <th class="bg-info text-dark">Date</th>
             <th class="bg-info text-dark">Complete/Incomplete</th>
             <th class="bg-info text-dark">Status</th>
+            <th class="bg-info text-dark">Invoice</th>
         </tr>
     </thead>
     <tbody class="bg-secondary text-light">
@@ -56,11 +49,7 @@ $user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
 
         // Bind parameter
         mysqli_stmt_bind_param($stmt_get_orders, "i", $user_id);
-
-        // Execute statement
         mysqli_stmt_execute($stmt_get_orders);
-
-        // Get the result
         $result_orders = mysqli_stmt_get_result($stmt_get_orders);
 
         $number = 1;
@@ -77,14 +66,31 @@ $user_id = ($row_fetch) ? $row_fetch['user_id'] : null;
 
             echo "<tr>
                     <td class='bg-secondary text-light'>$number</td>
-                    <td class='bg-secondary text-light'>$amount_due</td>
+                    <td class='bg-secondary text-light'>$amount_due kr.</td>
                     <td class='bg-secondary text-light'>$total_products</td>
                     <td class='bg-secondary text-light'>$invoice_number</td>
                     <td class='bg-secondary text-light'>$order_date</td>
                     <td class='bg-secondary text-light'>$order_status</td>";
+                    
 
             if ($order_status == 'Complete') {
                 echo "<td class='bg-secondary text-light'>Paid</td>";
+                echo "<td class='bg-secondary text-light'><a href='invoice_details.php?order_id=$order_id' class='text-light text-decoration-none'>View</a></td>";
+
+                // Empty the orders_pending table
+        $empty_pending_query = "DELETE FROM orders_pending WHERE order_id=?";
+        $stmt_empty_pending = mysqli_prepare($connection, $empty_pending_query);
+
+        // Bind parameter
+        mysqli_stmt_bind_param($stmt_empty_pending, "i", $order_id);
+
+        // Execute statement
+        mysqli_stmt_execute($stmt_empty_pending);
+
+        // Close the statement
+        mysqli_stmt_close($stmt_empty_pending);
+
+
             } else {
                 echo "<td class='bg-secondary text-light'><a href='confirm_payment.php?order_id=$order_id' class='text-light text-decoration-none'>Confirm</a></td>";
             }

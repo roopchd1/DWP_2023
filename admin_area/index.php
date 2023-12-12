@@ -14,6 +14,12 @@ if(!$db_select){
 }
 
 session_start();
+
+// Check if the user is not logged in and redirect to login page
+if (!isset($_SESSION['admin_username'])) {
+    header("Location: admin_login.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,15 +97,16 @@ session_start();
                                 echo "<li class='nav-item'>
                             <a class='nav-link text-light' href='admin_logout.php'>Logout</a>
                         </li>";
-                            }?>                        
-                    </ul>                
+                            }
+                    ?>
+                    </ul>
                 </nav>
             </div>
         </nav>
 
         <!-- seocnd part -->
         <div class="bg-light">
-            <h4 class="text-center p-2">Manage Details</h4>
+            <h3 class="text-center p-2">Admin Dashboard</h3>
         </div>
 
         <!-- third part -->
@@ -161,8 +168,6 @@ session_start();
 
                     <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?daily_offers" class="text-decoration-none text-light">Offers</a></button></div>
                     
-                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button">Logout</button></div>
-                </div>
             </div>
         </div>
 

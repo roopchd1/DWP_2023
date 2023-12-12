@@ -8,6 +8,9 @@ include("../globalfunctions/details_function.php");
 include("../globalfunctions/cart_function.php");
 include("../globalfunctions/getting_ip_function.php");
 
+// Allowed email addresses for admin registration
+$allowedEmails = ['maxi@gmail.com', 'roxy@gmail.com'];
+
 ?>
 
 <!DOCTYPE html>
@@ -73,58 +76,74 @@ if (isset($_POST['admin_registration'])) {
     $admin_username = $_POST['username'];
     $admin_email = $_POST['email'];
     $admin_password = $_POST['password'];
-    $hash_password = password_hash($admin_password, PASSWORD_DEFAULT);
     $admin_confirm_password = $_POST['confirm_password'];
 
-    // Select query
-    $select_query = "SELECT * FROM `admin_table` WHERE admin_name='$admin_username' AND admin_email='$admin_email'";
-    $result = mysqli_query($connection, $select_query);
-
-    // Check for query execution errors
-    if (!$result) {
-        die("Error in SQL query: " . mysqli_error($connection));
+    // Check if the provided email is in the allowed list
+    if (!in_array($admin_email, $allowedEmails)) {
+        echo "<script>alert('Registration not allowed for this email address.')</script>";
+        echo "<script>window.open('./admin_registration.php','_self')</script>";
     }
 
-    $rows_count = mysqli_num_rows($result);
+    // Select query
+    $select_query = "SELECT * FROM `admin_table` WHERE admin_name=? OR admin_email=?";
+    
+    // prepared statement
+    $stmt = mysqli_stmt_init($connection);
 
-    if ($rows_count > 0) {
-        echo "<script>alert('Username or Email already exist')</script>";
-    } elseif ($admin_password != $admin_confirm_password) {
-        echo "<script>alert('Password and Confirm Password do not match')</script>";
-    } else {
-        // Initialize a prepared statement
-        $stmt = mysqli_stmt_init($connection);
+    if ($stmt) {
+        
+        mysqli_stmt_prepare($stmt, $select_query);
+        mysqli_stmt_bind_param($stmt, "ss", $admin_username, $admin_email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (!$result) {
+            die("Error in SQL query: " . mysqli_error($connection));
+        }
 
-        if ($stmt) {
-            // Prepare the SQL statement
-            $sql = "INSERT INTO `admin_table` (admin_name, admin_email, admin_password) VALUES (?, ?, ?)";
+        $rows_count = mysqli_num_rows($result);
 
-            // Bind parameters
-            if (mysqli_stmt_prepare($stmt, $sql)) {
-                mysqli_stmt_bind_param($stmt, "sss", $admin_username, $admin_email, $hash_password);
+        if ($rows_count > 0) {
+            echo "<script>alert('Username or Email already exist')</script>";
+        } elseif ($admin_password != $admin_confirm_password) {
+            echo "<script>alert('Password and Confirm Password do not match')</script>";
+        } else {
+            // Close the statement
+            mysqli_stmt_close($stmt);
 
-                // Execute the statement
-                $sql_execute = mysqli_stmt_execute($stmt);
+            // prepared statement for insertion
+            $insert_stmt = mysqli_stmt_init($connection);
+
+            if ($insert_stmt) {
+                // Prepare the SQL statement for insertion
+                $insert_query = "INSERT INTO `admin_table` (admin_name, admin_email, admin_password) VALUES (?, ?, ?)";
+                mysqli_stmt_prepare($insert_stmt, $insert_query);
+
+                // Hash the password
+                $hash_password = password_hash($admin_password, PASSWORD_DEFAULT);
+
+                // Bind parameters for insertion
+                mysqli_stmt_bind_param($insert_stmt, "sss", $admin_username, $admin_email, $hash_password);
+
+                // Execute the insertion statement
+                $sql_execute = mysqli_stmt_execute($insert_stmt);
 
                 // Check for execution errors
                 if (!$sql_execute) {
-                    die("Error in SQL statement execution: " . mysqli_stmt_error($stmt));
+                    die("Error in SQL statement execution: " . mysqli_stmt_error($insert_stmt));
                 }
 
-                // Close the statement
-                mysqli_stmt_close($stmt);
+                // Close the insertion statement
+                mysqli_stmt_close($insert_stmt);
 
                 echo "<script>alert('Registration Successful');
-                    window.location = 'index.php';
+                    window.location = 'admin_login.php';
                     </script>";
             } else {
-                echo "Failed to prepare the statement.";
+                echo "Failed to prepare the insertion statement.";
             }
-        } else {
-            echo "Failed to initialize statement.";
         }
+    } else {
+        echo "Failed to initialize statement.";
     }
 }
 ?>
-
-

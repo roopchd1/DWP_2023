@@ -60,18 +60,29 @@ include("../globalfunctions/getting_ip_function.php");
 
 <?php
 
+if (isset($_POST['admin_login'])) {
+    $admin_username = sanitize_input($_POST['username']);
+    $admin_password = sanitize_input($_POST['password']);
 
-if(isset($_POST['admin_login'])){
-    $admin_username = $_POST['username'];
-    $admin_password = $_POST['password'];
+    // Select query using prepared statement
+    $select_query = "SELECT * FROM `admin_table` WHERE admin_name = ?";
+    $stmt = mysqli_prepare($connection, $select_query);
 
-    // Select query
-    $select_query = "SELECT * FROM `admin_table` WHERE admin_name = '$admin_username'";
-    $result = mysqli_query($connection, $select_query);
+    // Check for query preparation errors
+    if (!$stmt) {
+        die("Error in SQL query preparation: " . mysqli_error($connection));
+    }
+
+    // Bind parameters and execute the statement
+    mysqli_stmt_bind_param($stmt, "s", $admin_username);
+    mysqli_stmt_execute($stmt);
+
+    // Get the result
+    $result = mysqli_stmt_get_result($stmt);
 
     // Check for query execution errors
     if (!$result) {
-        die("Error in SQL query: " . mysqli_error($connection));
+        die("Error in SQL query execution: " . mysqli_error($connection));
     }
 
     $row = mysqli_fetch_assoc($result);
@@ -90,5 +101,16 @@ if(isset($_POST['admin_login'])){
     } else {
         echo "<script>alert('Admin not found')</script>";
     }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+}
+
+// Function to sanitize input
+function sanitize_input($data) {
+    global $connection;
+    $data = trim($data);
+    $data = mysqli_real_escape_string($connection, $data);
+    return $data;
 }
 ?>

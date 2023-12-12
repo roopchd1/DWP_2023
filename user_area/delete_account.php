@@ -10,33 +10,33 @@
     </form>
 
     <?php
-$username_session = $_SESSION['username'];
+        $username_session = $_SESSION['username'];
 
-if (isset($_POST['delete'])) {
-    echo "Delete button clicked!";
+        if (isset($_POST['delete'])) {
+            echo "Delete button clicked!";
 
-    $delete_query = "DELETE FROM `user_table` WHERE user_name=?";
-    $stmt = mysqli_prepare($connection, $delete_query);
+            $delete_query = "DELETE FROM `user_table` WHERE user_name=?";
+            $stmt = mysqli_prepare($connection, $delete_query);
 
-    if ($stmt === false) {
-        die('Error preparing delete statement: ' . mysqli_error($connection));
-    }
+            if ($stmt === false) {
+                die('Error preparing delete statement: ' . mysqli_error($connection));
+            }
 
-    mysqli_stmt_bind_param($stmt, "s", $username_session);
-    $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_param($stmt, "s", $username_session);
+            $result = mysqli_stmt_execute($stmt);
 
-    if ($result) {
-        unset($_SESSION['username']);
-        echo "<script>alert('Account Deleted Successfully')</script>";
-        echo "<script>window.open('../index.php','_self')</script>";
-    } else {
-        echo "<script>alert('Failed to delete account. Error: " . mysqli_error($connection) . "')</script>";
-        error_log('Error executing delete statement: ' . mysqli_error($connection));
-    }
-}
+            if ($result) {
+                unset($_SESSION['username']);
+                echo "<script>alert('Account Deleted Successfully')</script>";
+                echo "<script>window.open('../index.php','_self')</script>";
+            } else {
+                echo "<script>alert('Failed to delete account. Error: " . mysqli_error($connection) . "')</script>";
+                error_log('Error executing delete statement: ' . mysqli_error($connection));
+            }
+        }
 
-if (isset($_POST['dont_delete'])) {
-    echo "<script>window.open('profile.php','_self')</script>";
-}
+        if (isset($_POST['dont_delete'])) {
+            echo "<script>window.open('profile.php','_self')</script>";
+        }
 
 ?>

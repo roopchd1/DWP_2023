@@ -52,13 +52,6 @@ session_start();
     ?>
 
 <!-- third part -->
-<div class="bg-light">
-    <h3 class="text-center">Web Store</h3>
-    <p class="text-center">Eco Friendly Lether Bags</p>
-</div>
-
-
-<!-- fourth part -->
 <div class="container">
     <div class="row">
         <form action="" method="post">
