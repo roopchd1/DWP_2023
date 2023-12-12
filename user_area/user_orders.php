@@ -6,6 +6,12 @@
     <title>GreenTan Artisan - User Orders</title>
     <!-- bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+    </style>
     
 </head>
 <body>
@@ -38,7 +44,7 @@
             <th class="bg-info text-dark">Date</th>
             <th class="bg-info text-dark">Complete/Incomplete</th>
             <th class="bg-info text-dark">Status</th>
-            <th class="bg-info text-dark">Invoice</th>
+            <!-- <th class="bg-info text-dark">Invoice</th> -->
         </tr>
     </thead>
     <tbody class="bg-secondary text-light">
@@ -75,7 +81,7 @@
 
             if ($order_status == 'Complete') {
                 echo "<td class='bg-secondary text-light'>Paid</td>";
-                echo "<td class='bg-secondary text-light'><a href='invoice_details.php?order_id=$order_id' class='text-light text-decoration-none'>View</a></td>";
+                /* echo "<td class='bg-secondary text-light'><a href='invoice_details.php?order_id=$order_id' class='text-light text-decoration-none'>View</a></td>"; */
 
                 // Empty the orders_pending table
         $empty_pending_query = "DELETE FROM orders_pending WHERE order_id=?";

@@ -18,7 +18,9 @@ session_start();
     <style>
         body{
             overflow: hidden;
+            margin-bottom: 0;
         }
+        
         
     </style>
 
@@ -42,14 +44,23 @@ session_start();
         <li class="nav-item">
           <a class="nav-link" href="../display_all.php">Products</a>
         </li>
-        <li class="nav-item">
+        <?php
+        if(isset($_SESSION['username'])){
+          echo '<li class="nav-item">
+          <a class="nav-link" href="profile.php">My Account</a>
+        </li>';
+        }else{
+          echo '<li class="nav-item">
           <a class="nav-link" href="user_registration.php">Register</a>
-        </li>
+        </li>';
+        }
+
+        ?>
         <li class="nav-item">
-          <a class="nav-link" href="contact_us.php">Contact</a>
+          <a class="nav-link" href="../contact_us.php">Contact</a>
         </li>
         </ul>
-      <form class="d-flex" role="search" action="search_product.php">
+      <form class="d-flex" role="search" action="../search_product.php">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
         <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
         <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
@@ -59,15 +70,23 @@ session_start();
 </nav>
 
 
+
+
 <!-- second part -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
     <ul class="navbar-nav me-auto">
-    <li class="nav-item">
-          <a class="nav-link" href="#">Welcome Guest</a>
-        </li>
-        
-        
-        <?php if(!isset($_SESSION['username'])){
+    <?php 
+        if(!isset($_SESSION['username'])){
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='#'>Welcome Guest</a>
+        </li>";
+          }else{
+            echo "<li class='nav-item'>
+            <a class='nav-link' href='#'>Welcome ".$_SESSION['username']."</a>
+          </li>";
+          }
+
+       if(!isset($_SESSION['username'])){
           echo "<li class='nav-item'>
           <a class='nav-link' href='user_login.php'>Login</a>
     </li>";
@@ -76,8 +95,6 @@ session_start();
           <a class='nav-link' href='logout.php'>Logout</a>
     </li>";
           }?>
-    
-    </ul>
 </nav>
 
 <!-- third part -->
@@ -86,40 +103,30 @@ session_start();
     <p class="text-center">Eco Friendly Leather Bags</p>
 </div>
 
-
-<!-- fourth part -->
-<div class="row px-1">
+    <!-- fourth part -->
+    <div class="row px-1">
     
-    <div class="col-md-12">
-        <!-- products -->
-        
-        <div class="row">
-            <?php
-                if(!isset($_SESSION['username'])){
-                    include('user_login.php');
-
-                }else{
-                    include('payment.php');
-                }
-
-
-
-
-            ?>
-
+      <div class="col-md-12">
+          <div class="row">
+              <?php
+                  if(!isset($_SESSION['username'])){
+                      include('user_login.php');
+                  }else{
+                      include('payment.php');
+                  }
+              ?>
+          </div>
         </div>
-      <!-- end of column -->
     </div>
+
+
+    <!-- footer part -->
+        
+    <?php
+      include("../includes/footer.php")
+    ?>
+    
 </div>
-
-
-<!-- footer part -->
-    
-<?php
-include("../includes/footer.php")
-?>
-    
-    </div>
     
 
 

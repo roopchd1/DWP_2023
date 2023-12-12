@@ -1,6 +1,14 @@
 <?php
 include('../includes/connect.php');
-include('../globalfunctions/common_functions.php');
+//include('../globalfunctions/common_functions.php');
+//include("../globalfunctions/product_function.php");
+//include("../globalfunctions/sidenav_function.php");
+include("../globalfunctions/search_function.php");
+//include("../globalfunctions/details_function.php");
+include("../globalfunctions/cart_function.php");
+include("../globalfunctions/getting_ip_function.php");
+//include("../globalfunctions/news_function.php");
+//include("../globalfunctions/offers._function.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +28,10 @@ include('../globalfunctions/common_functions.php');
             margin: auto;
             display: block;
         }
+        body{
+            
+            margin-bottom: 0;
+        }
     </style>
 
 </head>
@@ -36,12 +48,12 @@ include('../globalfunctions/common_functions.php');
     ?>
     <div class="container">
         <h2 class="text-center text-dark">Payment Options</h2>
-        <div class="row display-flex justify-content center align-items-center">
-            <div class="col-md-6">
+        <div class="row display-flex align-items-center">
+            <div class="col-md-8">
             <a href="https://www.paypal.com" target="_blank"><img src="../img/paypal-784404_1280.png" alt="" class="payment_img"></a>
             </div>
-            <div class="col-md-6">
-            <a href="order.php?user_id=<?php echo $user_id ?>"><h4>MobilePay: 123456</h4></a>
+            <div class="col-md-4">
+            <a href="order.php?user_id=<?php echo $user_id ?>" class="text-decoration-none text-success"><h3>MobilePay</h3></a>
             </div>
             
         </div>

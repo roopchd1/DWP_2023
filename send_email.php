@@ -20,15 +20,15 @@ $mail = new PHPMailer(true);
 try {
     //Server settings
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'send.one.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'meinstocks@gmail.com';                     //SMTP username
-    $mail->Password   = 'saea fhzq bqas bmvc';                               //SMTP password
+    $mail->Username   = 'rupinder@greentanartisan.dk';                     //SMTP username
+    $mail->Password   = 'rupi@786';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('meinstocks@gmail.com', 'Contact Us');
+    $mail->setFrom('rupinder@greentanartisan.dk', 'Contact Us');
     $mail->addAddress('rupindermahajan@gmail.com', 'Rupi');     //Add a recipient
     
     //Content
