@@ -93,7 +93,7 @@ if (isset($_POST['admin_login'])) {
             // Password is correct, set session or redirect to admin dashboard
             session_start();
             $_SESSION['admin_username'] = $admin_username;
-            header("Location: index.php");
+            header("Location:index.php");
             exit();
         } else {
             echo "<script>alert('Incorrect Password')</script>";

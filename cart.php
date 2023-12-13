@@ -148,7 +148,7 @@ session_start();
                     <button class='bg-secondary text-light px-3 py-2 border-0'><a href='./user_area/checkout.php' class='text-light text-decoration-none'>Checkout</a></button>";
 
                 }else{
-                    echo "<input type='submit' value='Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>";
+                    echo "<input type='submit' value='<<<Continue Shopping' class='bg-success text-light px-3 py-1 border-0 mx-3' name='continue_shopping'>";
                 }
                 if(isset($_POST['continue_shopping'])){
                     header("Location: index.php");

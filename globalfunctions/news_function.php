@@ -17,7 +17,7 @@ function getNews()
             $news_content=$row['news_content'];
 
             // Output HTML with Bootstrap styling
-            echo "<div class='col-md-4 mb-3'>
+            echo "<div class='col-md-4 mb-3 d-flex'>
                     <div class='card bg-dark text-light border-1 border-light pt-3 mb-5'>
                         <h5 class='card-title text-primary text-center pb-2'>$news_title</h5>
                         <img src='./admin_area/news_image/$news_image' class='card-img-top' alt='$news_image'>

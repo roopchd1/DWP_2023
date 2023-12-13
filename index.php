@@ -85,7 +85,7 @@ session_start();
     <!-- news section -->
             <div class="text-primary mt-5 mb-5">
                 <h3 class="text-center">Latest in Leather Industry</h3>
-                <p class="text-center text-light">News Update</p>
+                <p class="text-center text-light">News Section / Company Values</p>
             </div>
               <div class="row">
                   <?php getNews(); 

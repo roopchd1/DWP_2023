@@ -57,7 +57,7 @@ if (!isset($_SESSION['admin_username'])) {
         .class-container{
             margin-bottom: 100px;
         }
-        .list_image{
+        .list_image, .news_image{
             width: 80px;
             object-fit: contain;
         }
@@ -112,7 +112,7 @@ if (!isset($_SESSION['admin_username'])) {
         <!-- third part -->
         <div class="row">
             <div class="col-md-12 bg-secondary d-flex align-items-center">
-                <div class="p-3">
+                <div class="p-3 mx-3">
                     <a href="#"><img src="../images/site favicon.png" alt="" class="admin_image mb-3"></a>
                     <?php 
                     if(isset($_SESSION['admin_username'])) {
@@ -228,6 +228,12 @@ if (!isset($_SESSION['admin_username'])) {
             }
             if(isset($_GET['daily_offers'])){
                 include('daily_offers.php');
+            }
+            if(isset($_GET['all_news'])){
+                include('all_news.php');
+            }
+            if(isset($_GET['delete_news'])){
+                include('delete_news.php');
             }
         ?>
         </div>
