@@ -114,3 +114,10 @@ CREATE TABLE IF NOT EXISTS daily_offers (
     status VARCHAR(255),
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS opening_hours (
+    opening_id INT PRIMARY KEY AUTO_INCREMENT,
+    day VARCHAR(20) NOT NULL,
+    opening_time TIME NOT NULL,
+    closing_time TIME NOT NULL
+);

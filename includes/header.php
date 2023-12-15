@@ -53,6 +53,13 @@
   cart();
 
 ?>
+<?php
+// Opening Hours
+$openingHours = new OpeningHours($connection);
+$timingsForToday = $openingHours->getOpeningHoursForToday();
+
+echo "<p class='text-light text-end p-2'> $timingsForToday</p>";
+?>
 
 <!-- second part -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">

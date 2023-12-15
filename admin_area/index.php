@@ -112,7 +112,7 @@ if (!isset($_SESSION['admin_username'])) {
         <!-- third part -->
         <div class="row">
             <div class="col-md-12 bg-secondary d-flex align-items-center">
-                <div class="p-3 mx-3">
+                <div class="p-3">
                     <a href="#"><img src="../images/site favicon.png" alt="" class="admin_image mb-3"></a>
                     <?php 
                     if(isset($_SESSION['admin_username'])) {
@@ -167,6 +167,8 @@ if (!isset($_SESSION['admin_username'])) {
                     <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?list_users" class="text-decoration-none text-light">List Users</a></button></div>
 
                     <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?daily_offers" class="text-decoration-none text-light">Offers</a></button></div>
+
+                    <div><button class="btn rounded-0 text-light bg-info m-3 p-6 border border-5" type="button"><a href="index.php?store_timings" class="text-decoration-none text-light">Timings</a></button></div>
                     
             </div>
         </div>
@@ -234,6 +236,9 @@ if (!isset($_SESSION['admin_username'])) {
             }
             if(isset($_GET['delete_news'])){
                 include('delete_news.php');
+            }
+            if(isset($_GET['store_timings'])){
+                include('store_timings.php');
             }
         ?>
         </div>

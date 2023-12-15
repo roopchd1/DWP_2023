@@ -11,6 +11,8 @@ include("./globalfunctions/getting_ip_function.php");
 include("./globalfunctions/news_function.php");
 include("./globalfunctions/offers._function.php");
 include("./globalfunctions/RecommendationSystem.php");
+include("./globalfunctions/opening_hours_function.php");
+
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
