@@ -8,6 +8,7 @@ include("./globalfunctions/details_function.php");
 include("./globalfunctions/cart_function.php");
 include("./globalfunctions/getting_ip_function.php");
 include("./globalfunctions/offers._function.php");
+include("./globalfunctions/RecommendationSystem.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){

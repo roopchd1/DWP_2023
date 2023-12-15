@@ -33,7 +33,7 @@
                     $number++;
                     echo "<tr>
                             <td class='bg-secondary text-light text-center'>$number</td>
-                            <td class='bg-secondary text-light text-center'>$amount_due</td>
+                            <td class='bg-secondary text-light text-center'>$amount_due kr.</td>
                             <td class='bg-secondary text-light text-center'>$invoice_number</td>
                             <td class='bg-secondary text-light text-center'>$total_products</td>
                             <td class='bg-secondary text-light text-center'>$order_date</td>

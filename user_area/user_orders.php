@@ -44,7 +44,7 @@
             <th class="bg-info text-dark">Date</th>
             <th class="bg-info text-dark">Complete/Incomplete</th>
             <th class="bg-info text-dark">Status</th>
-            <!-- <th class="bg-info text-dark">Invoice</th> -->
+            <th class="bg-info text-dark">Invoice</th>
         </tr>
     </thead>
     <tbody class="bg-secondary text-light">
@@ -81,7 +81,7 @@
 
             if ($order_status == 'Complete') {
                 echo "<td class='bg-secondary text-light'>Paid</td>";
-                /* echo "<td class='bg-secondary text-light'><a href='invoice_details.php?order_id=$order_id' class='text-light text-decoration-none'>View</a></td>"; */
+                echo "<td class='bg-secondary text-light'><a href='view_invoice.php?invoice_number=$invoice_number' class='text-light text-decoration-none'>View</a></td>";
 
                 // Empty the orders_pending table
         $empty_pending_query = "DELETE FROM orders_pending WHERE order_id=?";

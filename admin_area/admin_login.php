@@ -9,6 +9,70 @@ include("../globalfunctions/cart_function.php");
 include("../globalfunctions/getting_ip_function.php");
 @session_start();
 
+class AdminManager
+{
+    private $connection;
+
+    public function __construct($connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function login($username, $password)
+    {
+        $admin_username = $this->sanitizeInput($username);
+        $admin_password = $this->sanitizeInput($password);
+
+        $select_query = "SELECT * FROM `admin_table` WHERE admin_name = ?";
+        $stmt = mysqli_prepare($this->connection, $select_query);
+
+        if (!$stmt) {
+            die("Error in SQL query preparation: " . mysqli_error($this->connection));
+        }
+
+        mysqli_stmt_bind_param($stmt, "s", $admin_username);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (!$result) {
+            die("Error in SQL query execution: " . mysqli_error($this->connection));
+        }
+
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row) {
+            if (password_verify($admin_password, $row['admin_password'])) {
+                session_start();
+                $_SESSION['admin_username'] = $admin_username;
+                header("Location:index.php");
+                exit();
+            } else {
+                echo "<script>alert('Incorrect Password')</script>";
+            }
+        } else {
+            echo "<script>alert('Admin not found')</script>";
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+
+    private function sanitizeInput($data)
+    {
+        $data = trim($data);
+        $data = mysqli_real_escape_string($this->connection, $data);
+        return $data;
+    }
+}
+
+// Example usage:
+$adminManager = new AdminManager($connection);
+
+if (isset($_POST['admin_login'])) {
+    $adminManager->login($_POST['username'], $_POST['password']);
+}
+
+
 ?>
 
 <!DOCTYPE html>

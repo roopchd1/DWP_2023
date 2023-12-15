@@ -10,6 +10,7 @@ include("./globalfunctions/cart_function.php");
 include("./globalfunctions/getting_ip_function.php");
 include("./globalfunctions/news_function.php");
 include("./globalfunctions/offers._function.php");
+include("./globalfunctions/RecommendationSystem.php");
 $connection=mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
 
 if(!$connection){
@@ -43,6 +44,11 @@ session_start();
         body{
             overflow-x: hidden;
         }
+    
+    .recomend-price {
+        font-size: 14px; 
+    }
+
         
     </style>
 </head>
@@ -72,9 +78,12 @@ session_start();
                   echo 'User Real IP Address - '.$ip; */                      
                     ?>                
                   <!-- end of row -->      
+                  
             </div>
+            
                 <!-- end of column -->
           </div>
+          
 
             <!-- sidenav -->
           <?php

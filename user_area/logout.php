@@ -1,10 +1,18 @@
-
 <?php
 
 session_start();
-session_unset();
+
+// Unset all session variables
+$_SESSION = array();
+
+// Regenerate session ID to help prevent session fixation
+session_regenerate_id();
+
+// Destroy the session
 session_destroy();
-echo "<script>window.open('../index.php','_self')</script>";
+
+// Redirect to the index page
+header("Location: ../index.php");
 exit();
 
 ?>

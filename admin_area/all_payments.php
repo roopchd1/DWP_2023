@@ -31,8 +31,8 @@
                     $number++;
                     echo "<tr>
                             <td class='bg-secondary text-light text-center'>$number</td>
-                            <td class='bg-secondary text-light text-center'>$amount</td>
                             <td class='bg-secondary text-light text-center'>$invoice_number</td>
+                            <td class='bg-secondary text-light text-center'>$amount kr.</td>
                             <td class='bg-secondary text-light text-center'>$payment_mode</td>
                             <td class='bg-secondary text-light text-center'>$date</td>
                             <td class='bg-secondary text-center'><a href='index.php?delete_orders=$order_id' class='text-light'><i class='fa-solid fa-trash'></i></a></td>

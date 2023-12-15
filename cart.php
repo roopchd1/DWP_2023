@@ -73,7 +73,7 @@ session_start();
                 <th>Product Title</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
-                <th>Total Price</th>
+                <th>Product Price</th>
                 <th>Remove</th>
                 <th colspan='2'>Operations</th>
                 </tr>
